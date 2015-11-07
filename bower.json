@@ -1,0 +1,23 @@
+{
+  "name": "lodash-extras",
+  "homepage": "https://github.com/rjhilgefort/lodash-extras",
+  "authors": [
+    "Rob Hilgefort <rjhilgefort@gmail.com>"
+  ],
+  "description": "",
+  "main": "dist/lodash-extras.js",
+  "moduleType": [],
+  "keywords": [
+    "lodash",
+    "extras",
+    "contrib"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
