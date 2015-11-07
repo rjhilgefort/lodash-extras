@@ -1,0 +1,13 @@
+# dependencies
+/node_modules
+/bower_components
+
+# misc
+npm-debug.log
+
+# system
+.DS_Store
+Thumbs.db
+*_backup
+portkey.json
+.tern-port
