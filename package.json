@@ -1,0 +1,24 @@
+{
+  "name": "lodash-extras",
+  "version": "0.0.1",
+  "description": "An opinionated lodash mod with extras",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjhilgefort/lodash-extras.git"
+  },
+  "keywords": [
+    "lodash",
+    "extras",
+    "contrib"
+  ],
+  "author": "Rob Hilgefort <rjhilgefort@gmail.com> (http://rob.hilgefort.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rjhilgefort/lodash-extras/issues"
+  },
+  "homepage": "https://github.com/rjhilgefort/lodash-extras#readme"
+}
