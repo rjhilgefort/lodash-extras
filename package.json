@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/rjhilgefort/lodash-extras/issues"
   },
-  "homepage": "https://github.com/rjhilgefort/lodash-extras#readme"
+  "homepage": "https://github.com/rjhilgefort/lodash-extras#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
 }
