@@ -1,4 +1,4 @@
-import lodashUtils from 'wildcat/utils/lodash/_core/lodash-utils';
+import lodashUtils from './_core/lodash-utils';
 
 
 /**
