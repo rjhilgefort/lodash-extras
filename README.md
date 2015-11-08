@@ -8,9 +8,10 @@
   - ~~Port over from project specific work~~
   - Figure out (initial) way of using
     - ~~setup grunt~~
-    - setup babel
     - setup browserify
+    - setup babel
   - Modify src to operate in an independent fashion
+  - initial dist commit (POC)
   - Expose the modded lodash object
   - Make bower package
   - Make npm package
