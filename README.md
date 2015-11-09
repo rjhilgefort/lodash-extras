@@ -10,14 +10,14 @@
     - ~~setup grunt~~
     - ~~setup browserify~~
     - ~~setup babel~~
-  - lodash
+  - ~~lodash~~
     - ~~figure out how to include lodash~~
-    - conditionally require lodash as bower dep or npm dep so it's not required to be committed to this repo :(
   - ~~Expose the modded lodash object~~
   - ~~initial dist commit (POC)~~
   - Modify src to operate in an independent fashion
   - Make bower package
 - v0.2.0
+  - conditionally require lodash as bower dep or npm dep so it's not assumed to be present
   - Modify for use as node module
   - Make npm package
   - Setup testing framework
