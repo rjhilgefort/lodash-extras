@@ -1,7 +1,6 @@
-import lodashUtils from 'wildcat/utils/lodash/_core/lodash-utils';
-import lodashExtras from 'wildcat/utils/lodash/lodash-extras';
-import lodashEmber from 'wildcat/utils/lodash/lodash-ember';
-import lodashWildcat from 'wildcat/utils/lodash/lodash-wildcat';
+import lodashUtils from './_core/lodash-utils';
+import lodashExtras from './lodash-extras';
+import lodashEmber from './lodash-ember';
 
 
 // All lodash extraDeep methods to export
@@ -18,49 +17,14 @@ let lodashDeepExtras = {};
  * @return {Boolean}
  */
 (() => {
-	// Determined if lodash key/method is valid to make deep (`is` methods that only have one argument)
-	let validIsMethod = function(key) {
-		return (_.startsWith(key, 'is') && (this[key].length === 1));
-	};
-
-	// Filter out all valid `is` methods from a namespace
-	let filterIsMethods = (namespace) => {
-		return _.chain(namespace)
-			.keys()
-			.filter(validIsMethod, namespace)
-			.value();
-	};
-
-	// Overload normal lodash methods to handle deep syntax
-	let overloadMethods = (methods, namespace) => {
-		let oldMethod = {};
-
-		_.forEach(methods, (method) => {
-			// Save old method
-			oldMethod[method] = namespace[method];
-
-			// Make new method that also handles `deepGet`. Apply method to exports.
-			lodashDeepExtras[method] = function(value, propString) {
-				if (_.size(arguments) === 2) return namespace[method](_.get(...arguments));
-				return oldMethod[method](...arguments);
-			};
-		});
-	};
-
-	// Build `isMethods`
-	let buildIsMethods = (namespace) => overloadMethods(filterIsMethods(namespace), namespace);
-
-	// Get all `is` methods from standard lodash
-	buildIsMethods(_);
+  // Get all `is` methods from standard lodash
+  lodashUtils.buildIsMethods(_, lodashDeepExtras);
 
 	// Make sure "extra" `is` methods are added as well
-	buildIsMethods(lodashExtras);
+  lodashUtils.buildIsMethods(lodashExtras, lodashDeepExtras);
 
 	// Make sure "ember" `is` methods are added as well
-	buildIsMethods(lodashEmber);
-
-	// Make sure "wildcat" `is` methods are added as well
-	buildIsMethods(lodashWildcat);
+  lodashUtils.buildIsMethods(lodashEmber, lodashDeepExtras);
 })();
 
 

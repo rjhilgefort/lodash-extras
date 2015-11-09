@@ -31,7 +31,7 @@ lodashUtils.typeDefaults = typeDefaults;
  * @return {Function}
  * @since v0.5.2
  */
-export var makeIsType = function(klass) {
+export var makeIsType = (klass) => {
 	return function(value) {
 		return (value instanceof klass);
 	};
@@ -47,7 +47,7 @@ lodashUtils.makeIsType = makeIsType;
  * @return {Function}
  * @since v1.3.0
  */
-export var makeEnsureType = function(condition) {
+export var makeEnsureType = (condition) => {
 	let defaults = lodashUtils.typeDefaults();
 
 	// Check params: condition
@@ -93,7 +93,7 @@ lodashUtils.makeEnsureType = makeEnsureType;
  * @return {Function}
  * @since v0.5.2
  */
-export var makeDeepEnsureType = function(condition) {
+export var makeDeepEnsureType = (condition) => {
 	return (collection, propString, valueDefault) => {
 		return _.set(
 			collection,
@@ -106,6 +106,82 @@ export var makeDeepEnsureType = function(condition) {
 	};
 };
 lodashUtils.makeDeepEnsureType = makeDeepEnsureType;
+
+
+/**
+ * Determined if lodash key/method is valid to make deep (`is` methods that only have one argument)
+ * TODO: It would be nice to check for function existence
+ *
+ * @method validIsMethod
+ * @param {String} key: method name
+ * @return {Boolean}
+ */
+export var validIsMethod = (key) => {
+  return (
+    _.startsWith(key, 'is')/* &&
+    (this[key].length === 1)*/
+  );
+};
+lodashUtils.validIsMethod = validIsMethod;
+
+
+/**
+ * Filter out all valid `is` methods from a namespace
+ *
+ * @method filterIsMethods
+ * @param {String} namespace: Collection of methods
+ * @return {Object} `namespace` with just the "is" methods
+ */
+export var filterIsMethods = (namespace) => {
+  return _.chain(namespace)
+    .keys()
+    .filter(validIsMethod.bind(namespace), namespace)
+    .value();
+};
+lodashUtils.filterIsMethods = filterIsMethods;
+
+
+/**
+ * Overload normal lodash methods to handle deep syntax
+ * TODO: No need to take the first param
+ *
+ * @method overloadMethods
+ * @param {Object} isMethods: Collection of is methods
+ * @param {String} namespace: Original namespace isMethods came from
+ * @param {Object} target: namespace to overload methods on
+ * @return {Undefined}
+ */
+export var overloadMethods = (isMethods, namespace, target) => {
+  let oldMethod = {};
+
+  _.forEach(isMethods, (method) => {
+    // Save old method
+    oldMethod[method] = namespace[method];
+
+    // Make new method that also handles `deepGet`. Apply method to exports.
+    target[method] = function(value, propString) {
+      if (_.size(arguments) === 2) {
+        return namespace[method](_.get(...arguments));
+      }
+      return oldMethod[method](...arguments);
+    };
+  });
+};
+lodashUtils.overloadMethods = overloadMethods;
+
+
+/**
+ * Build `isMethods`
+ *
+ * @method buildIsMethods
+ * @param {String} namespace: Namespace to pull `is` methods from
+ * @param {Object} target: namespace to overload methods on
+ * @return {Undefined}
+ */
+export var buildIsMethods = (namespace, target) => {
+  overloadMethods(filterIsMethods(namespace), namespace, target);
+}
+lodashUtils.buildIsMethods = buildIsMethods;
 
 
 export default lodashUtils;
