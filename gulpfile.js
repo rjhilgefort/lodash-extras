@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var gulp = require('gulp');
 var browserify = require('browserify');
 var babelify = require('babelify');
