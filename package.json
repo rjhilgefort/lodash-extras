@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/rjhilgefort/lodash-extras#readme",
   "devDependencies": {
-    "babelify": "^7.2.0",
+    "babelify": "^6.1.2",
     "browserify": "^12.0.1",
     "gulp": "^3.9.0",
     "vinyl-source-stream": "^1.1.0"
