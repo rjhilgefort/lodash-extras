@@ -1,3 +1,5 @@
+var babelify = require('babelify');
+
 module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-browserify');
@@ -10,6 +12,7 @@ module.exports = function (grunt) {
     browserify: {
       dist: {
         options: {
+          debug: true,
           transform: [
             [
               "babelify",
