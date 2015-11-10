@@ -17,6 +17,7 @@ let lodashDeepExtras = {};
 lodashUtils.buildIsMethods(_, lodashDeepExtras);
 lodashUtils.buildIsMethods(lodashExtras, lodashDeepExtras);
 
+
 /**
  * Generate `ensure` methods- Ensure that value is of type x, deeply
  *
