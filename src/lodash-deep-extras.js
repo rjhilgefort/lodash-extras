@@ -20,7 +20,6 @@ lodashUtils.buildIsMethods(_, lodashDeepExtras);
 lodashUtils.buildIsMethods(lodashExtras, lodashDeepExtras);
 lodashUtils.buildIsMethods(lodashEmber, lodashDeepExtras);
 
-
 /**
  * Generate `ensure` methods- Ensure that value is of type x, deeply
  *
@@ -38,8 +37,8 @@ _.forEach(_.keys(lodashUtils.typeDefaults()), (type) => {
 
 
 /**
- * TODO: TEST TEST TEST. This is experimental (WIP)
  * Delete deeply nested properties without checking existence down the tree first
+ * TODO: TEST TEST TEST. This is experimental (WIP)
  *
  * @namespace _
  * @method deepDelete

@@ -1,7 +1,9 @@
 import lodashExtras from './lodash-extras';
-import lodashDeepExtras from './lodash-deep-extras';
-// import lodashEmber from './lodash-ember';
-
 _.mixin(lodashExtras);
+
+
+import lodashEmber from './lodash-ember';
+_.mixin(lodashEmber);
+
+import lodashDeepExtras from './lodash-deep-extras';
 _.mixin(lodashDeepExtras);
-// _.mixin(lodashEmber);
