@@ -11,13 +11,13 @@ let lodashUtils = {};
  * @return {PlainObject}
  */
 export var typeDefaults = () => {
-	return {
-		'String': '',
-		'Array': [],
-		'PlainObject': {},
-		'Boolean': false,
-		'Number': 1
-	};
+  return {
+    'String': '',
+    'Array': [],
+    'PlainObject': {},
+    'Boolean': false,
+    'Number': 1
+  };
 };
 lodashUtils.typeDefaults = typeDefaults;
 
@@ -30,9 +30,9 @@ lodashUtils.typeDefaults = typeDefaults;
  * @return {Function}
  */
 export var makeIsType = (klass) => {
-	return function(value) {
-		return (value instanceof klass);
-	};
+  return function(value) {
+    return (value instanceof klass);
+  };
 };
 lodashUtils.makeIsType = makeIsType;
 
@@ -45,37 +45,37 @@ lodashUtils.makeIsType = makeIsType;
  * @return {Function}
  */
 export var makeEnsureType = (condition) => {
-	let defaults = lodashUtils.typeDefaults();
+  let defaults = lodashUtils.typeDefaults();
 
-	// Check params: condition
-	if (!_.isString(condition)) condition = '';
-	condition = _.capitalize(condition);
-	if (!_.contains(_.keys(defaults), condition)) {
-		throw new Error(`\`condition\` not supported: ${condition}`);
-	}
+  // Check params: condition
+  if (!_.isString(condition)) condition = '';
+  condition = _.capitalize(condition);
+  if (!_.contains(_.keys(defaults), condition)) {
+    throw new Error(`\`condition\` not supported: ${condition}`);
+  }
 
-	// Shortcut
-	let isCondition = _[`is${condition}`];
+  // Shortcut
+  let isCondition = _[`is${condition}`];
 
-	/**
-	 * Interface for `ensureType` methods
-	 *
-	 * @method `ensure${type}`
-	 * @param {*} value: To check
-	 * @param {*} [valueDefault=defaults[condition]: What to default to
-	 * @return {*} Defaulted value, or the value itself if pass
+  /**
+   * Interface for `ensureType` methods
+   *
+   * @method `ensure${type}`
+   * @param {*} value: To check
+   * @param {*} [valueDefault=defaults[condition]: What to default to
+   * @return {*} Defaulted value, or the value itself if pass
    */
-	return (value, valueDefault) => {
-		// Determine `valueDefault`: if nothing provided, or provided doesn't match type
-		if (_.isUndefined(valueDefault) || !isCondition(valueDefault)) {
-			valueDefault = _.clone(defaults[condition]);
-		}
+  return (value, valueDefault) => {
+    // Determine `valueDefault`: if nothing provided, or provided doesn't match type
+    if (_.isUndefined(valueDefault) || !isCondition(valueDefault)) {
+      valueDefault = _.clone(defaults[condition]);
+    }
 
-		// Actual "ensure" check
-		if (!_[`is${condition}`](value)) value = valueDefault;
+    // Actual "ensure" check
+    if (!_[`is${condition}`](value)) value = valueDefault;
 
-		return value;
-	};
+    return value;
+  };
 };
 lodashUtils.makeEnsureType = makeEnsureType;
 
@@ -89,16 +89,16 @@ lodashUtils.makeEnsureType = makeEnsureType;
  * @return {Function}
  */
 export var makeDeepEnsureType = (condition) => {
-	return (collection, propString, valueDefault) => {
-		return _.set(
-			collection,
-			propString,
-			lodashUtils.makeEnsureType(condition)(
-				_.get(collection, propString),
-				valueDefault
-			)
-		);
-	};
+  return (collection, propString, valueDefault) => {
+    return _.set(
+      collection,
+      propString,
+      lodashUtils.makeEnsureType(condition)(
+        _.get(collection, propString),
+        valueDefault
+      )
+    );
+  };
 };
 lodashUtils.makeDeepEnsureType = makeDeepEnsureType;
 

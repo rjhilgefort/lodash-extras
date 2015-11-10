@@ -18,7 +18,7 @@ export var lodashEmber = {};
  * @return {Boolean}
  */
 export var isEmberInstance = function(value) {
-	return (Ember.typeOf(value) === 'instance');
+  return (Ember.typeOf(value) === 'instance');
 };
 lodashEmber.isEmberInstance = isEmberInstance;
 
@@ -70,11 +70,11 @@ lodashEmber.isEmberArrayProxy = isEmberArrayProxy;
  * @return {Boolean}
  */
 export var isEmberCollection = function(value) {
-	return (
-		_.isEmberObject(value) ||
-		_.isEmberObjectProxy(value) ||
-		_.isEmberArrayProxy(value)
-	);
+  return (
+    _.isEmberObject(value) ||
+    _.isEmberObjectProxy(value) ||
+    _.isEmberArrayProxy(value)
+  );
 };
 lodashEmber.isEmberCollection = isEmberCollection;
 
@@ -87,10 +87,10 @@ lodashEmber.isEmberCollection = isEmberCollection;
  * @return {Boolean}
  */
 export var isEmberTransition = function(value) {
-	return (
-		_.isFunction(value, 'toString') &&
-		_.contains(value.toString(), 'Transition')
-	);
+  return (
+    _.isFunction(value, 'toString') &&
+    _.contains(value.toString(), 'Transition')
+  );
 };
 lodashEmber.isEmberTransition = isEmberTransition;
 
@@ -118,13 +118,13 @@ lodashEmber._forEach = _forEach;
  * @returns {Array|Object|String} Returns `collection`.
  */
 export var forEach = function(collection, callback, thisArg) {
-	if (_.isEmberArrayProxy(collection)) {
-		return collection.forEach(callback, this);
-	}
-	if (_.isEmberObjectProxy(collection) && _.isObject(collection.get('content'))) {
-		return _forEach(collection.get('content'), callback, thisArg);
-	}
-	return _forEach(collection, callback, thisArg);
+  if (_.isEmberArrayProxy(collection)) {
+    return collection.forEach(callback, this);
+  }
+  if (_.isEmberObjectProxy(collection) && _.isObject(collection.get('content'))) {
+    return _forEach(collection.get('content'), callback, thisArg);
+  }
+  return _forEach(collection, callback, thisArg);
 };
 lodashEmber.forEach = forEach;
 
@@ -154,13 +154,13 @@ lodashEmber._reduce = _reduce;
  * @returns {Array|Object|String} Returns `collection`.
  */
 export var reduce = function(collection, callback, currentValue, thisArg) {
-	if (_.isEmberArrayProxy(collection)) {
-		return collection.reduce(callback, currentValue, this);
-	}
-	if (_.isEmberObjectProxy(collection) && _.isObject(collection.get('content'))) {
-		return _reduce(collection.get('content'), callback, currentValue, thisArg);
-	}
-	return _reduce(collection, callback, currentValue, thisArg);
+  if (_.isEmberArrayProxy(collection)) {
+    return collection.reduce(callback, currentValue, this);
+  }
+  if (_.isEmberObjectProxy(collection) && _.isObject(collection.get('content'))) {
+    return _reduce(collection.get('content'), callback, currentValue, thisArg);
+  }
+  return _reduce(collection, callback, currentValue, thisArg);
 };
 lodashEmber.reduce = reduce;
 
@@ -188,10 +188,10 @@ lodashEmber._map = _map;
  * @returns {Array|Object|String} Returns `collection`.
  */
 export var map = function(collection, callback, thisArg) {
-	if (_.isEmberArrayProxy(collection)) {
-		return collection.map(callback, this);
-	}
-	return _map(collection, callback, thisArg);
+  if (_.isEmberArrayProxy(collection)) {
+    return collection.map(callback, this);
+  }
+  return _map(collection, callback, thisArg);
 };
 lodashEmber.map = map;
 
@@ -217,10 +217,10 @@ lodashEmber._get = _get;
  * @returns {*} The value, or undefined if it doesn't exists.
  */
 export var get = function(collection, propertyPath) {
-	// Handle Ember Objects
-	if (isEmberObject(collection) || isEmberObjectProxy(collection)) {
-		return collection.get(propertyPath);
-	}
+  // Handle Ember Objects
+  if (isEmberObject(collection) || isEmberObjectProxy(collection)) {
+    return collection.get(propertyPath);
+  }
 
   return _get(...arguments);
 };
@@ -250,11 +250,11 @@ lodashEmber._set = _set;
  * @returns {*} The `collection` passed in with value set.
  */
 export var set = function(collection, propertyPath, value) {
-	// Handle Ember Objects
-	if (isEmberObject(collection) || isEmberObjectProxy(collection)) {
-		collection.set(propertyPath, value);
-		return collection;
-	}
+  // Handle Ember Objects
+  if (isEmberObject(collection) || isEmberObjectProxy(collection)) {
+    collection.set(propertyPath, value);
+    return collection;
+  }
 
   return _set(...arguments);
 };
@@ -280,14 +280,14 @@ lodashEmber._isEmpty = _isEmpty;
  * @return {Boolean}
  */
 export var isEmpty = function(value) {
-	if (
-		_.isEmberArrayProxy(value) &&
-		_.isFunction(value.isEmpty)
-	) {
-		return value.isEmpty();
-	}
+  if (
+    _.isEmberArrayProxy(value) &&
+    _.isFunction(value.isEmpty)
+  ) {
+    return value.isEmpty();
+  }
 
-	return _isEmpty(...arguments);
+  return _isEmpty(...arguments);
 };
 lodashEmber.isEmpty = isEmpty;
 
@@ -311,11 +311,11 @@ lodashEmber._clone = _clone;
  * @return {*}
  */
 export var clone = function(value) {
-	if (_.isWildcatObject(value)) {
-		return value.clone();
-	}
+  if (_.isWildcatObject(value)) {
+    return value.clone();
+  }
 
-	return _clone(...arguments);
+  return _clone(...arguments);
 };
 lodashEmber.clone = clone;
 
@@ -328,7 +328,7 @@ lodashEmber.clone = clone;
  * @return {*}
  */
 export var pop = function(value) {
-	return (_.isEmberArrayProxy(value)) ? value.popObject() : value.pop();
+  return (_.isEmberArrayProxy(value)) ? value.popObject() : value.pop();
 };
 lodashEmber.pop = pop;
 
@@ -341,7 +341,7 @@ lodashEmber.pop = pop;
  * @return {*}
  */
 export var shift = function(value) {
-	return (_.isEmberArrayProxy(value)) ? value.shiftObject() : value.shift();
+  return (_.isEmberArrayProxy(value)) ? value.shiftObject() : value.shift();
 };
 lodashEmber.shift = shift;
 

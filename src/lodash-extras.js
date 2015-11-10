@@ -50,42 +50,42 @@ lodashExtras.isPromise = isPromise;
  * @return {Boolean}
  */
 export var is = function(value, conditions) {
-	if (_.isString(conditions)) conditions = [conditions];
-	if (_.isPresent(conditions) && !_.isArray(conditions)) conditions = [];
-	if (conditions.length <= 1) console.error("Don't call `is` helper with just one condition- use that condition directly");
-	return _.every(conditions, function(condition) {
-		let result, not;
+  if (_.isString(conditions)) conditions = [conditions];
+  if (_.isPresent(conditions) && !_.isArray(conditions)) conditions = [];
+  if (conditions.length <= 1) console.error("Don't call `is` helper with just one condition- use that condition directly");
+  return _.every(conditions, function(condition) {
+    let result, not;
 
-		// Check for valid condition
-		if (!_.isString(condition)) {
-			console.warn("`condition` was not a string: " + condition);
-			return false;
-		}
+    // Check for valid condition
+    if (!_.isString(condition)) {
+      console.warn("`condition` was not a string: " + condition);
+      return false;
+    }
 
-		// Handle not condition
-		not = false;
-		if (_.startsWith(condition, '!')) {
-			not = true;
-			condition = condition.replace('!', '');
-		}
+    // Handle not condition
+    not = false;
+    if (_.startsWith(condition, '!')) {
+      not = true;
+      condition = condition.replace('!', '');
+    }
 
-		// Be EXTRA (too) helpful (prepend 'is' if ommitted)
-		if (!_.startsWith(condition, 'is')) {
-			condition = 'is' + condition;
-		}
+    // Be EXTRA (too) helpful (prepend 'is' if ommitted)
+    if (!_.startsWith(condition, 'is')) {
+      condition = 'is' + condition;
+    }
 
-		// Make sure `condition` is a valid lodash method
-		if (!_.isFunction(_[condition])) {
-			console.warn("`condition` was not a valid lodash method: " + condition);
-			return false;
-		}
+    // Make sure `condition` is a valid lodash method
+    if (!_.isFunction(_[condition])) {
+      console.warn("`condition` was not a valid lodash method: " + condition);
+      return false;
+    }
 
-		// Determine result and return
-		result = _[condition](value);
-		if (not === true) return !result;
+    // Determine result and return
+    result = _[condition](value);
+    if (not === true) return !result;
 
-		return result;
-	});
+    return result;
+  });
 };
 lodashExtras.is = is;
 
@@ -99,7 +99,7 @@ lodashExtras.is = is;
  * @return {*} Ensured value
  */
 _.forEach(_.keys(lodashUtils.typeDefaults()), (type) => {
-	lodashExtras[`ensure${type}`] = lodashUtils.makeEnsureType(type);
+  lodashExtras[`ensure${type}`] = lodashUtils.makeEnsureType(type);
 });
 
 

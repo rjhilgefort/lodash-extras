@@ -29,7 +29,7 @@ lodashUtils.buildIsMethods(lodashEmber, lodashDeepExtras);
  * @return {*} Collection, with ensured property
  */
 _.forEach(_.keys(lodashUtils.typeDefaults()), (type) => {
-	lodashExtras[`deepEnsure${type}`] = lodashUtils.makeDeepEnsureType(type);
+  lodashExtras[`deepEnsure${type}`] = lodashUtils.makeDeepEnsureType(type);
 });
 
 
@@ -43,19 +43,19 @@ _.forEach(_.keys(lodashUtils.typeDefaults()), (type) => {
  * @return {undefined} Doesn't return success/failure, to match `delete`'s return
  */
 export var deepDelete = function(value, propString) {
-	let currentValue, i;
+  let currentValue, i;
 
-	// Delete if present
-	if (_.isPresent(value, propString)) {
-		currentValue = value;
-		propString = _(propString).toString().split('.');
+  // Delete if present
+  if (_.isPresent(value, propString)) {
+    currentValue = value;
+    propString = _(propString).toString().split('.');
 
-		for (i = 0; i < (propString.length - 1); i++) {
-			currentValue = currentValue[propString[i]];
-		}
+    for (i = 0; i < (propString.length - 1); i++) {
+      currentValue = currentValue[propString[i]];
+    }
 
-		delete currentValue[propString[i]];
-	}
+    delete currentValue[propString[i]];
+  }
 };
 lodashDeepExtras.deepDelete = deepDelete;
 
