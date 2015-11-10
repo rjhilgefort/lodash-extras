@@ -21,7 +21,7 @@
   - Get each module working
     - ~~lodash-extras~~
     - ~~lodash-deep-extras~~
-    - lodash-ember-extras
+    - ~~lodash-ember-extras~~
   - Modify src to operate in an independent fashion
   - Add uglify
   - Setup basic README
