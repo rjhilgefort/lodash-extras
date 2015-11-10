@@ -1,6 +1,5 @@
 import lodashUtils from './_core/lodash-utils';
 import lodashExtras from './lodash-extras';
-import lodashEmber from './lodash-ember';
 
 
 // All lodash extraDeep methods to export
@@ -8,7 +7,7 @@ let lodashDeepExtras = {};
 
 
 /**
- * Generate `deepIs` methods and override standard methods to handle both
+ * Generate deep `is` methods and override standard methods to handle both
  *
  * @method is{Condition}
  * @param {Object} value: Base value to look through
@@ -17,7 +16,6 @@ let lodashDeepExtras = {};
  */
 lodashUtils.buildIsMethods(_, lodashDeepExtras);
 lodashUtils.buildIsMethods(lodashExtras, lodashDeepExtras);
-lodashUtils.buildIsMethods(lodashEmber, lodashDeepExtras);
 
 /**
  * Generate `ensure` methods- Ensure that value is of type x, deeply

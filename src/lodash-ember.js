@@ -357,5 +357,16 @@ export var typeOf = (value) => Ember.typeOf(value);
 lodashEmber.typeOf = typeOf;
 
 
+/**
+ * Generate deep `is` methods and override standard methods to handle both
+ *
+ * @method is{Condition}
+ * @param {Object} value: Base value to look through
+ * @param {String} propString: Property string to apply to `get`
+ * @return {Boolean}
+ */
+lodashUtils.buildIsMethods(lodashEmber, lodashEmber);
+
+
 export var lodashEmber;
 export default lodashEmber;
