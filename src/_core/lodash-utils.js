@@ -158,7 +158,7 @@ export var overloadMethods = (isMethods, namespace, target) => {
     // Save old method
     oldMethod[method] = namespace[method];
 
-    // Make new method that also handles `deepGet`. Apply method to exports.
+    // Make new method that also handles `get`. Apply method to exports.
     target[method] = function(value, propString) {
       if (_.size(arguments) === 2) {
         return namespace[method](_.get(...arguments));

@@ -213,17 +213,16 @@ lodashEmber.map = map;
 
 
 /**
- * Lodash deepGet alias to private namespace
+ * Lodash `get` alias to private namespace
  *
  * @namespace _
- * @method _deepGet
+ * @method _get
  * @param {Object|Array} collection: The root collection of the tree.
  * @param {String|Array} propertyPath: The property path in the collection.
  * @returns {*} The value, or undefined if it doesn't exists.
- * @since v0.5.2
  */
-export var _deepGet = _.deepGet;
-lodashEmber._deepGet = _deepGet;
+export var _get = _.get;
+lodashEmber._get = _get;
 
 
 /**
@@ -241,24 +240,24 @@ export var get = function(collection, propertyPath) {
 		return collection.get(propertyPath);
 	}
 
-	return _deepGet(...arguments);
+  return _get(...arguments);
 };
 lodashEmber.get = get;
 
 
 /**
- * Lodash deepSet alias to private namespace
+ * Lodash `set` alias to private namespace
  *
  * @namespace _
- * @method _deepSet
+ * @method _set
  * @param {Object|Array} collection: The root collection of the tree.
  * @param {String|Array} propertyPath: The property path in the collection.
  * @param {*} value: The property path in the collection.
  * @returns {*} The `collection` passed in with value set.
  * @since v0.5.2
  */
-export var _deepSet = _.deepSet;
-lodashEmber._deepSet = _deepSet;
+export var _set = _.set;
+lodashEmber._set = _set;
 
 
 /**
@@ -278,17 +277,9 @@ export var set = function(collection, propertyPath, value) {
 		return collection;
 	}
 
-	return _deepSet(...arguments);
+  return _set(...arguments);
 };
 lodashEmber.set = set;
-
-
-// Don't use the deep prefix.
-// If necessary, you can access the raw function at `_._deepGet`
-(() => {
-	delete _.deepGet;
-	delete _.deepSet;
-})();
 
 
 /**

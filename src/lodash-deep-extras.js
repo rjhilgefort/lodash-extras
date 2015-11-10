@@ -13,7 +13,7 @@ let lodashDeepExtras = {};
  * @namespace _
  * @method is{Condition}
  * @param {Object} value: Base value to look through
- * @param {String} propString: Property string to apply to deepGet
+ * @param {String} propString: Property string to apply to `get`
  * @return {Boolean}
  */
 lodashUtils.buildIsMethods(_, lodashDeepExtras);
@@ -43,7 +43,7 @@ _.forEach(_.keys(lodashUtils.typeDefaults()), (type) => {
  * @namespace _
  * @method deepDelete
  * @param {*} value: Value to check
- * @param {String} propString: Property string to apply to deepGet
+ * @param {String} propString: Property string to apply to `get`
  * @return {undefined} Doesn't return success/failure, to match `delete`'s return
  */
 export var deepDelete = function(value, propString) {
