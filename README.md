@@ -2,7 +2,11 @@
 
 #### An opinionated lodash mod with extras
 
-### TODO
+### Installation
+
+### Features
+
+### ROADMAP / TODO
 
 - v0.1.0
   - ~~Port over from project specific work~~
@@ -20,9 +24,11 @@
     - lodash-ember-extras
   - Modify src to operate in an independent fashion
   - Add uglify
+  - Setup basic README
   - Submit bower package
 - v0.2.0
-  - conditionally require lodash as bower dep or npm dep so it's not assumed to be present
+  - Better README
+  - Conditionally require lodash as bower dep or npm dep so it's not assumed to be present
   - Modify for use as node module
   - Make npm package
   - Setup testing framework
