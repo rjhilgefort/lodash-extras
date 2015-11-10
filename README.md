@@ -14,8 +14,13 @@
     - ~~figure out how to include lodash~~
   - ~~Expose the modded lodash object~~
   - ~~initial dist commit (POC)~~
+  - Get each module working
+    - ~~lodash-extras~~
+    - ~~lodash-deep-extras~~
+    - lodash-ember-extras
   - Modify src to operate in an independent fashion
-  - Make bower package
+  - Add uglify
+  - Submit bower package
 - v0.2.0
   - conditionally require lodash as bower dep or npm dep so it's not assumed to be present
   - Modify for use as node module
