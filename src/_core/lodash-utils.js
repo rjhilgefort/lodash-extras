@@ -110,16 +110,16 @@ lodashUtils.makeDeepEnsureType = makeDeepEnsureType;
 
 /**
  * Determined if lodash key/method is valid to make deep (`is` methods that only have one argument)
- * TODO: It would be nice to check for function existence
+ * NOTE: Assumes `this` === is the namespace to check for the function on
  *
  * @method validIsMethod
  * @param {String} key: method name
  * @return {Boolean}
  */
-export var validIsMethod = (key) => {
+export var validIsMethod = function(key) {
   return (
-    _.startsWith(key, 'is')/* &&
-    (this[key].length === 1)*/
+    _.startsWith(key, 'is') &&
+    (this[key].length === 1)
   );
 };
 lodashUtils.validIsMethod = validIsMethod;
@@ -135,7 +135,7 @@ lodashUtils.validIsMethod = validIsMethod;
 export var filterIsMethods = (namespace) => {
   return _.chain(namespace)
     .keys()
-    .filter(validIsMethod.bind(namespace), namespace)
+    .filter(validIsMethod, namespace)
     .value();
 };
 lodashUtils.filterIsMethods = filterIsMethods;
