@@ -1,4 +1,6 @@
-// import Ember from 'ember';
+/**
+ * This utility assumes `Ember` exists globally
+ */
 import lodashUtils from './_core/lodash-utils';
 
 
@@ -35,7 +37,7 @@ lodashEmber.isEmberObject = isEmberObject;
 
 
 /**
- * isEmberArray has been excluded as Ember.Array is not an Ember.Object
+ * NOTE: isEmberArray has been excluded as Ember.Array is not an Ember.Object
  */
 
 

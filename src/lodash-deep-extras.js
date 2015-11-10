@@ -16,16 +16,9 @@ let lodashDeepExtras = {};
  * @param {String} propString: Property string to apply to deepGet
  * @return {Boolean}
  */
-(() => {
-  // Get all `is` methods from standard lodash
-  lodashUtils.buildIsMethods(_, lodashDeepExtras);
-
-	// Make sure "extra" `is` methods are added as well
-  lodashUtils.buildIsMethods(lodashExtras, lodashDeepExtras);
-
-	// Make sure "ember" `is` methods are added as well
-  lodashUtils.buildIsMethods(lodashEmber, lodashDeepExtras);
-})();
+lodashUtils.buildIsMethods(_, lodashDeepExtras);
+lodashUtils.buildIsMethods(lodashExtras, lodashDeepExtras);
+lodashUtils.buildIsMethods(lodashEmber, lodashDeepExtras);
 
 
 /**
