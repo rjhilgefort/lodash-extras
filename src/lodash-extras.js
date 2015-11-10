@@ -10,7 +10,6 @@ let lodashExtras = {};
 /**
  * Helper to check if a variable is defined and present
  *
- * @namespace _
  * @method isPresent
  * @param {*} value: Value to check
  * @return {Boolean}
@@ -22,7 +21,6 @@ lodashExtras.isPresent = isPresent;
 /**
  * Helper to check if a variable is defined and present
  *
- * @namespace _
  * @method isBlank
  * @param {*} value: Value to check
  * @return {Boolean}
@@ -34,7 +32,6 @@ lodashExtras.isBlank = isBlank;
 /**
  * Helper to check if a variable is a promise
  *
- * @namespace _
  * @method isPromise
  * @param {*} value: Value to check
  * @return {Boolean}
@@ -47,7 +44,6 @@ lodashExtras.isPromise = isPromise;
  * Helper to check a value for an array of LoDash boolean conditions
  * TODO: Name this `isAnd` and create `isOr`...
  *
- * @namespace _
  * @method is
  * @param {*} value: Value to check
  * @param {Array} conditions: LoDash methods to have value tested against (as strings)
@@ -97,12 +93,10 @@ lodashExtras.is = is;
 /**
  * Generate `ensure` methods- Ensure that value is of type x
  *
- * @namespace _
  * @method ensure{Type}
  * @param {*} value: To check
  * @param {*} [valueDefault=defaults[condition]: What to default to
  * @return {*} Ensured value
- * @since v1.3.0
  */
 _.forEach(_.keys(lodashUtils.typeDefaults()), (type) => {
 	lodashExtras[`ensure${type}`] = lodashUtils.makeEnsureType(type);
@@ -112,7 +106,6 @@ _.forEach(_.keys(lodashUtils.typeDefaults()), (type) => {
 /**
  * Javascript `typeof` alias
  *
- * @namespace _
  * @method typeOf
  * @param {*} value: Value to check
  * @return {String} The type of `value`

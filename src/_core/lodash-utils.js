@@ -9,7 +9,6 @@ let lodashUtils = {};
  *
  * @method typeDefaults
  * @return {PlainObject}
- * @since v1.3.0
  */
 export var typeDefaults = () => {
 	return {
@@ -29,7 +28,6 @@ lodashUtils.typeDefaults = typeDefaults;
  * @method makeIsType
  * @param {*} klass: A class to check instanceof against
  * @return {Function}
- * @since v0.5.2
  */
 export var makeIsType = (klass) => {
 	return function(value) {
@@ -45,7 +43,6 @@ lodashUtils.makeIsType = makeIsType;
  * @method makeEnsureType
  * @param {String} condition: Lodash method to apply
  * @return {Function}
- * @since v1.3.0
  */
 export var makeEnsureType = (condition) => {
 	let defaults = lodashUtils.typeDefaults();
@@ -67,8 +64,7 @@ export var makeEnsureType = (condition) => {
 	 * @param {*} value: To check
 	 * @param {*} [valueDefault=defaults[condition]: What to default to
 	 * @return {*} Defaulted value, or the value itself if pass
-	 * @since v1.3.0
-	 */
+   */
 	return (value, valueDefault) => {
 		// Determine `valueDefault`: if nothing provided, or provided doesn't match type
 		if (_.isUndefined(valueDefault) || !isCondition(valueDefault)) {
@@ -91,7 +87,6 @@ lodashUtils.makeEnsureType = makeEnsureType;
  * @param {Function} condition: Lodash method to apply
  * @param {*} valueDefault: What to assign when not of the desired type
  * @return {Function}
- * @since v0.5.2
  */
 export var makeDeepEnsureType = (condition) => {
 	return (collection, propString, valueDefault) => {

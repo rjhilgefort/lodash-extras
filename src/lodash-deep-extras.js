@@ -10,7 +10,6 @@ let lodashDeepExtras = {};
 /**
  * Generate `deepIs` methods and override standard methods to handle both
  *
- * @namespace _
  * @method is{Condition}
  * @param {Object} value: Base value to look through
  * @param {String} propString: Property string to apply to `get`
@@ -23,13 +22,11 @@ lodashUtils.buildIsMethods(lodashEmber, lodashDeepExtras);
 /**
  * Generate `ensure` methods- Ensure that value is of type x, deeply
  *
- * @namespace _
  * @method deepEnsure{Type}
  * @param {Object|Array} collection: The root collection of the tree.
  * @param {String} propString: Nested property path of value to check
  * @param {*} [valueDefault=defaults[condition]: What to default to
  * @return {*} Collection, with ensured property
- * @since v1.3.0
  */
 _.forEach(_.keys(lodashUtils.typeDefaults()), (type) => {
 	lodashExtras[`deepEnsure${type}`] = lodashUtils.makeDeepEnsureType(type);
@@ -40,7 +37,6 @@ _.forEach(_.keys(lodashUtils.typeDefaults()), (type) => {
  * Delete deeply nested properties without checking existence down the tree first
  * TODO: TEST TEST TEST. This is experimental (WIP)
  *
- * @namespace _
  * @method deepDelete
  * @param {*} value: Value to check
  * @param {String} propString: Property string to apply to `get`
