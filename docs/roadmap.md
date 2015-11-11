@@ -19,11 +19,11 @@
   - ~~Setup README~~
   - ~~Submit bower package~~
 - **v0.2.0: Node/NPM**
-  - Better README?
   - Conditionally require lodash as bower dep or npm dep so it's not assumed to be present
   - Modify for use as node module
   - Make npm package
 - **v0.3.0: Testing**
+  - Full write up of API Documentation
   - Setup testing framework
   - Write tests for existing source
 - **v0.4.0: First New Features**
