@@ -1,0 +1,36 @@
+## ROADMAP
+
+- **v0.1.0: MVP**
+  - ~~Port over from project specific work~~
+  - ~~Figure out (initial) way of using~~
+    - ~~setup grunt~~
+    - ~~setup browserify~~
+    - ~~setup babel~~
+  - ~~lodash~~
+    - ~~figure out how to include lodash~~
+  - ~~Expose the modded lodash object~~
+  - ~~initial dist commit (POC)~~
+  - ~~Get each module working~~
+    - ~~lodash-extras~~
+    - ~~lodash-deep-extras~~
+    - ~~lodash-ember-extras~~
+  - ~~Modify src to operate in an independent fashion~~
+  - ~~Add uglify~~
+  - ~~Setup README~~
+  - ~~Submit bower package~~
+- **v0.2.0: Node/NPM**
+  - Better README?
+  - Conditionally require lodash as bower dep or npm dep so it's not assumed to be present
+  - Modify for use as node module
+  - Make npm package
+- **v0.3.0: Testing**
+  - Setup testing framework
+  - Write tests for existing source
+- **v0.4.0: First New Features**
+  - Break out "lodash-ember-extras" into multiple sub-modules (still included as one)
+  - Combine `_.ensure` methods to be deep, or not (instead of also having `_.deepEnsure` to handle deep)
+  - Make sure `_.deepDelete` works as is
+  - Refactor `_.deepDelete` as `_.delete` and have it handle 1 level objects
+  - Promise "extras"
+    - `_.resolve`
+	- `_.reject`
