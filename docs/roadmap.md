@@ -34,3 +34,6 @@
   - Promise "extras"
     - `_.resolve`
 	- `_.reject`
+  - `_.isAnd`, `_.isOr`
+    - Modify `_.is` to `_.isAnd`
+    - Implement `_.isOr`
