@@ -30,7 +30,12 @@ The full [API Docs](docs/roadmap.md) are still a work in progress. Look for them
   * `_.isPresent`: Not `null` or `undefined`
   * `_.isBlank`: Opposite of `_.isPresent`
   * `_.isPromise` Is the object a then-able
-* **Deep `_.is` methods:** lodash provides many type checking methods out of the box. These are all prefixed with `_.is` and then the type. For example, `_.isString`. All the lodash `_.is` methods now take two params and follow the interface of `_.get`.
+* **`_.is`:** Checks a value for an array of lodash boolean conditions
+  * ex: ```_.is('foo', ['isPresent', '!isPlainObject']) // -> true```
+    * note: You may prefix any method with `!` to invert the check
+  * ex: ```_.is([1, 2], ['Array', '!Empty']) // -> true```
+    * note: You may omit the the "is" prefix on any methods
+* **Deep `_.is[Method]`methods:** lodash provides many type checking methods out of the box. These are all prefixed with `_.is[Methohod]`and then the type. For example, `_.isString`. All the lodash `_.is[Methohod]`methods now take two params and follow the interface of `_.get`.
 
 ## Further Reading
 
