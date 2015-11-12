@@ -1,12 +1,12 @@
 {
   "name": "lodash-extras",
+  "version": "0.0.5",
   "homepage": "https://github.com/rjhilgefort/lodash-extras",
   "authors": [
     "Rob Hilgefort <rjhilgefort@gmail.com>"
   ],
-  "description": "",
+  "description": "An opinionated lodash mod with extras",
   "main": "dist/lodash-extras.js",
-  "moduleType": [],
   "keywords": [
     "lodash",
     "extras",
@@ -14,10 +14,18 @@
   ],
   "license": "MIT",
   "ignore": [
-    "**/.*",
+    "src",
+    ".editorconfig",
+    ".gitignore",
+    "bower.json",
+    "package.json",
+    "gulpfile.js",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "lodash": "~3.10.1"
+  }
 }
