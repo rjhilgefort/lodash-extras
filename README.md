@@ -22,23 +22,130 @@ The `_` (lodash) object will now have been modified with the "extras" included i
 
 [![Join the chat at https://gitter.im/rjhilgefort/lodash-extras](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rjhilgefort/lodash-extras)
 
-## Features
-
-The full [API Docs](docs/roadmap.md) are still a work in progress. Look for them to get more fleshed out as proper interface documentation including examples. For now, here's a bulleted list of some features to check out. As with anything, your best bet it to [check out the source](src/) (it's well documented).
-
-* **Additional `_.is` methods**
-  * `_.isPresent`: Not `null` or `undefined`
-  * `_.isBlank`: Opposite of `_.isPresent`
-  * `_.isPromise` Is the object a then-able
-* **`_.is`:** Checks a value for an array of lodash boolean conditions
-  * ex: ```_.is('foo', ['isPresent', '!isPlainObject']) // -> true```
-    * note: You may prefix any method with `!` to invert the check
-  * ex: ```_.is([1, 2], ['Array', '!Empty']) // -> true```
-    * note: You may omit the the "is" prefix on any methods
-* **Deep `_.is[Method]`methods:** lodash provides many type checking methods out of the box. These are all prefixed with `_.is[Methohod]`and then the type. For example, `_.isString`. All the lodash `_.is[Methohod]`methods now take two params and follow the interface of `_.get`.
-
 ## Further Reading
 
 * [API Documentation](docs/api-docs.md)
 * [Roadmap/Changelog](docs/roadmap.md)
 * [lodash Documentation](https://lodash.com/docs)
+
+## Features
+
+The full [API Docs](docs/roadmap.md) are still a work in progress. Look for them to get more fleshed out as proper interface documentation including examples. For now, here's a bulleted list of some features to check out. As with anything, your best bet it to [check out the source](src/) (it's well documented).
+
+
+### `_.is[Condition]`
+
+Additional is conditions
+
+* `_.isPresent`: Not `null` or `undefined`
+* `_.isBlank`: Opposite of `_.isPresent`
+* `_.isPromise` Is the object a then-able
+
+
+### `_.is`
+
+Checks a value for an array of lodash boolean conditions
+
+```js
+// Standard usage, trivial example (`_.isPlainObject` would accomplish the same)
+_.is('foo', ['isPresent', 'isPlainObject']); // -> false
+
+// You may prefix any method with `!` to invert the check
+_.is('foo', ['isPresent', '!isPlainObject']); // -> true
+
+// You may omit the the "is" prefix on any method
+_.is([1, 2], ['Array', '!Empty']); // -> true
+```
+
+
+### `_.ensure[Type]`
+
+Ensure type methods ensure that a value is of the type specified (default can be specified)
+
+* `_.ensureString`
+* `_.ensureArray`
+* `_.ensurePlainObject`
+* `_.ensureBoolean`
+* `_.ensureNumber`
+
+```js
+var foo = 'foo';
+
+// Standard usage
+foo = _.ensureString(foo); // -> 'foo'
+foo = _.ensurePlainObject(foo); // -> {}
+
+// A default can be specified
+foo = _.ensureArray(foo, ['foo', 'bar']); // -> ['foo', 'bar']
+
+// Providing a default that doesn't match the ensure[Type] will ignore your default
+foo = _.ensureNumber(foo, 'foo'); // -> 1
+```
+
+### `_.typeOf`
+
+An alias for native JS `typeOf` method. Aliased for common interface and the ability to be overrieden by other "extras" (as seen in `lodash-ember-extras`)
+
+### `_.is[Condition]`
+
+lodash provides many type checking methods out of the box. These are all of the following format `_.is[Condition]`. For example, `_.isString`. All the lodash `_.is[Condition]`methods now take two params and follow the interface of `_.get`.
+
+```js
+foo = {
+  bar: 'bar',
+  baz: {
+    qux: false
+  }
+};
+
+_.isString(foo, 'bar'); // -> true
+_.isPlainObject(foo, 'baz'); // -> true
+_.isBoolean(foo, 'baz.qux'); // -> true
+_.isPresent(foo, 'baz.qux.foo.bar'); // -> false
+```
+
+
+### `_.deepEnsure[Type]`
+
+Same as `_.ensure[Type]`, but adheres to the `_.get` interface. Look for this to be merged with the `_.ensure[Type]` namespace in the near future. The return of these methods is as you'd expect- the entire modified object. In the examples below, I only show the updated bits.
+
+* `_.deepEnsureString`
+* `_.deepEnsureArray`
+* `_.deepEnsurePlainObject`
+* `_.deepEnsureBoolean`
+* `_.deepEnsureNumber`
+
+```js
+foo = {
+  bar: 'bar',
+  baz: {
+    qux: false
+  }
+};
+
+// Standard usage
+foo = _.deepEnsureString(foo, 'bar'); // -> { bar: 'bar' }
+foo = _.deepEnsurePlainObject(foo, 'bar'); // -> { bar: {} }
+
+// Still accepts defaults
+foo = _.deepEnsureArray(foo, 'bar', ['foo', 'bar']); // -> { bar: ['foo', 'bar'] }
+
+// Still ignores your default if wrong type
+foo = _.deepEnsureNumber(foo, 'baz.qux', 'foo'); // -> 'foo'
+```
+
+### `_.deepDelete`
+
+Delete properties on an object using the `_.get` interface. This will eventually probably be renamed to `_.delete`. This utility is still a work in progress, use at your own risk.
+
+```js
+foo = {
+  bar: 'bar'
+};
+
+_.deepDelete(foo, 'bar'); // -> {}
+```
+
+### `lodash-ember-extras`
+
+This modeule constitutes nearly half of the the "lodash-extras" project and I unfortunately do not have the time to do the feature write up for them yet. I opted to shortcut doing the write up as the use case for them is specific to Ember applications. That being said, there's some great stuff in there and I encourage you to [check out the source](src/lodash-ember.js) (again, they are well documented).

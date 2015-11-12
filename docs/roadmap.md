@@ -23,6 +23,7 @@
   - Modify for use as node module
   - Make npm package
 - **v0.3.0: Testing**
+  - Do feature write up of Ember extras
   - Full write up of API Documentation
   - Setup testing framework
   - Write tests for existing source
