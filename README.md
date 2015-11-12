@@ -33,7 +33,7 @@ The `_` (lodash) object will now have been modified with the "extras" included i
 The full [API Docs](docs/roadmap.md) are still a work in progress. Look for them to get more fleshed out as proper interface documentation including examples. For now, here's a bulleted list of some features to check out. As with anything, your best bet it to [check out the source](src/) (it's well documented).
 
 
-#### `_.is[Condition]`
+#### > `_.is[Condition]`
 
 Additional is conditions
 
@@ -42,7 +42,7 @@ Additional is conditions
 * `_.isPromise` Is the object a then-able
 
 
-#### `_.is`
+#### > `_.is`
 
 Checks a value for an array of lodash boolean conditions
 
@@ -58,7 +58,7 @@ _.is([1, 2], ['Array', '!Empty']); // -> true
 ```
 
 
-#### `_.ensure[Type]`
+#### > `_.ensure[Type]`
 
 Ensure type methods ensure that a value is of the type specified (default can be specified)
 
@@ -82,11 +82,11 @@ foo = _.ensureArray(foo, ['foo', 'bar']); // -> ['foo', 'bar']
 foo = _.ensureNumber(foo, 'foo'); // -> 1
 ```
 
-#### `_.typeOf`
+#### > `_.typeOf`
 
-An alias for native JS `typeOf` method. Aliased for common interface and the ability to be overrieden by other "extras" (as seen in `lodash-ember-extras`)
+An alias for native JS `typeOf` method. Aliased for common interface and the ability to be overrieden by other "extras" ([as seen in `lodash-ember`](src/lodash-ember.js))
 
-#### `_.is[Condition]`
+#### > `_.is[Condition]`
 
 lodash provides many type checking methods out of the box. These are all of the following format `_.is[Condition]`. For example, `_.isString`. All the lodash `_.is[Condition]`methods now take two params and follow the interface of `_.get`.
 
@@ -105,7 +105,7 @@ _.isPresent(foo, 'baz.qux.foo.bar'); // -> false
 ```
 
 
-#### `_.deepEnsure[Type]`
+#### > `_.deepEnsure[Type]`
 
 Same as `_.ensure[Type]`, but adheres to the `_.get` interface. Look for this to be merged with the `_.ensure[Type]` namespace in the near future. The return of these methods is as you'd expect- the entire modified object. In the examples below, I only show the updated bits.
 
@@ -134,7 +134,7 @@ foo = _.deepEnsureArray(foo, 'bar', ['foo', 'bar']); // -> { bar: ['foo', 'bar']
 foo = _.deepEnsureNumber(foo, 'baz.qux', 'foo'); // -> 'foo'
 ```
 
-#### `_.deepDelete`
+#### > `_.deepDelete`
 
 Delete properties on an object using the `_.get` interface. This will eventually probably be renamed to `_.delete`. This utility is still a work in progress, use at your own risk.
 
@@ -146,6 +146,6 @@ foo = {
 _.deepDelete(foo, 'bar'); // -> {}
 ```
 
-#### `lodash-ember-extras`
+#### > `lodash-ember`
 
-This modeule constitutes nearly half of the the "lodash-extras" project and I unfortunately do not have the time to do the feature write up for them yet. I opted to shortcut doing the write up as the use case for them is specific to Ember applications. That being said, there's some great stuff in there and I encourage you to [check out the source](src/lodash-ember.js) (again, they are well documented).
+This module constitutes nearly half of the the "lodash-extras" project and I unfortunately do not have the time to do the feature write up for them yet. I opted to shortcut doing the write up as the use case for them is specific to Ember applications. That being said, there's some great stuff in there and I encourage you to [check out the source](src/lodash-ember.js) (again, it's well documented).
