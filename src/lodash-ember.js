@@ -13,13 +13,11 @@ export var lodashEmber = {};
 /**
  * Check that a value is an instance, as designated by Ember
  *
- * @method isInstance
+ * @method isEmberInstance
  * @param {*} value: Value to check
  * @return {Boolean}
  */
-export var isEmberInstance = function(value) {
-  return (Ember.typeOf(value) === 'instance');
-};
+export var isEmberInstance = (value) => Ember.typeOf(value) === 'instance';
 lodashEmber.isEmberInstance = isEmberInstance;
 
 
