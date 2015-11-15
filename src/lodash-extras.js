@@ -110,7 +110,7 @@ _.forEach(_.keys(lodashUtils.typeDefaults()), (type) => {
  * @param {*} value: Value to check
  * @return {String} The type of `value`
  */
-export var typeOf = (value) => typeof(value);
+export var typeOf = (value) => typeof value;
 lodashExtras.typeOf = typeOf;
 
 
