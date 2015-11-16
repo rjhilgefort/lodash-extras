@@ -41,6 +41,22 @@ lodashExtras.isDate = isDate;
 
 
 /**
+ * Check if a variable is a moment date object
+ *
+ * @method isMoment
+ * @param {*} value: Value to check
+ * @return {Boolean}
+ */
+export var isMoment = (value) => {
+  return (
+    _.isObject(value) &&
+    value._isAMomentObject === true
+  );
+};
+lodashExtras.isMoment = isMoment;
+
+
+/**
  * Helper to check if a variable is a promise
  *
  * @method isPromise

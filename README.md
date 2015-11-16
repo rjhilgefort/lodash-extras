@@ -41,6 +41,7 @@ Additional is conditions
 * `_.isBlank`: Opposite of `_.isPresent`
 * `_.isPromise` Is the object a then-able
 * `_.isDate` Is value a date object
+* `_.isMoment` Is value a moment object
 
 
 #### > `_.is`
