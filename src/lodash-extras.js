@@ -109,9 +109,12 @@ lodashExtras.is = is;
  * @param {*} [valueDefault=defaults[condition]: What to default to
  * @return {*} Ensured value
  */
-_.forEach(_.keys(lodashUtils.typeDefaults()), (type) => {
-  lodashExtras[`ensure${type}`] = lodashUtils.makeEnsureType(type);
-});
+_.forEach(
+  _.keys(lodashUtils.typeDefaults()),
+  (type) => {
+    lodashExtras[`ensure${type}`] = lodashUtils.makeEnsureType(type);
+  }
+);
 
 
 /**
