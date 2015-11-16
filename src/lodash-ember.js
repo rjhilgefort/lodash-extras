@@ -309,10 +309,7 @@ lodashEmber._clone = _clone;
  * @return {*}
  */
 export var clone = function(value) {
-  if (_.isWildcatObject(value)) {
-    return value.clone();
-  }
-
+  // TODO: Create some sort of clone for Ember Objects and Arrays
   return _clone(...arguments);
 };
 lodashEmber.clone = clone;
