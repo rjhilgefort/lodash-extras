@@ -32,9 +32,9 @@
   - Combine `_.ensure` methods to be deep, or not (instead of also having `_.deepEnsure` to handle deep)
   - Make sure `_.deepDelete` works as is
   - Refactor `_.deepDelete` as `_.delete` and have it handle 1 level objects
-  - Promise "extras"
-    - `_.resolve`
-	- `_.reject`
+  - ~~Promise "extras"~~
+    - ~~`_.promiseResolve`~~
+    - ~~`_.promiseReject`~~
   - `_.isAnd`, `_.isOr`
     - Modify `_.is` to `_.isAnd`
     - Implement `_.isOr`

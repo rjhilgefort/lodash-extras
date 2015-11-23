@@ -353,6 +353,33 @@ lodashEmber.typeOf = typeOf;
 
 
 /**
+ * RSVP resolve helper
+ *
+ * @method promiseResolve
+ * @param {*} value: Value to resolve with
+ * @return {Promise}
+ */
+export var promiseResolve = (value) => {
+  return Ember.RSVP.resolve(value);
+};
+lodashEmber.promiseResolve = promiseResolve;
+
+
+/**
+ * RSVP reject helper
+ *
+ * @method promiseReject
+ * @param {*} value: Value to resolve with
+ * @return {Promise}
+ */
+export var promiseReject = (message) => {
+  message = _.ensureString(message);
+  return Ember.RSVP.reject(console.error(message));
+};
+lodashEmber.promiseReject = promiseReject;
+
+
+/**
  * Generate deep `is` methods and override standard methods to handle both
  *
  * @method is{Condition}
