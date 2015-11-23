@@ -38,3 +38,6 @@
   - `_.isAnd`, `_.isOr`
     - Modify `_.is` to `_.isAnd`
     - Implement `_.isOr`
+  - Implement Ember ArrayPoxy methods that share name in lodash
+    - `_.first`
+    - `_.last`
