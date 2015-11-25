@@ -24,13 +24,14 @@ lodashMoment.isMoment = isMoment;
  *
  * @method ensureMoment
  * @param {*} value: Value to check
+ * @param {*} valueDefault: What to default to
  * @return {Moment}
  */
-export var ensureMoment = (value, default) => {
+export var ensureMoment = (value, valueDefault) => {
   if (isMoment(value)) return value;
   value = moment(value);
   if (value.isValid()) return value;
-  if (isMoment(default)) return default;
+  if (isMoment(valueDefault)) return valueDefault;
   return moment();
 };
 lodashMoment.ensureMoment = ensureMoment;
