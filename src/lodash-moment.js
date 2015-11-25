@@ -12,10 +12,7 @@ let lodashMoment = {};
  * @return {Boolean}
  */
 export var isMoment = (value) => {
-  return (
-    _.isObject(value) &&
-    value._isAMomentObject === true
-  );
+  return moment.isMoment(value);
 };
 lodashMoment.isMoment = isMoment;
 

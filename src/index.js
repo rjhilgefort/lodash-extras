@@ -1,7 +1,7 @@
 import lodashExtras from './lodash-extras';
 _.mixin(lodashExtras);
 
-// Only mixin ember-extras if available
+// Only mixin moment-extras if available
 import lodashMoment from './lodash-moment';
 if (_.isPresent(window.moment)) _.mixin(lodashMoment);
 
