@@ -69,6 +69,7 @@ Ensure type methods ensure that a value is of the type specified (default can be
 * `_.ensurePlainObject`
 * `_.ensureBoolean`
 * `_.ensureNumber`
+* `_.ensureMoment`
 
 ```js
 var foo = 'foo';
@@ -82,6 +83,10 @@ foo = _.ensureArray(foo, ['foo', 'bar']); // -> ['foo', 'bar']
 
 // Providing a default that doesn't match the ensure[Type] will ignore your default
 foo = _.ensureNumber(foo, 'foo'); // -> 1
+
+// ensureMoment is handled slightly different, it will try to convert anything you pass to moment first before falling back to default
+foo = _.ensureMoment(new Date(2015, 11, 5), moment()); // -> Moment with 11-5-2015 as date
+foo = _.ensureMoment('foo', moment()); // -> Moment with today as date
 ```
 
 #### > `_.typeOf`
