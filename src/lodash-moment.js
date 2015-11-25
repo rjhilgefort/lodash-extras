@@ -20,6 +20,15 @@ export var isMoment = (value) => {
 lodashMoment.isMoment = isMoment;
 
 
+/**
+ * Ensure value is a moment object.
+ * If not, tries to create a moment object from value,
+ * otherwise returns moment().
+ *
+ * @method ensureMoment
+ * @param {*} value: Value to check
+ * @return {Moment}
+ */
 export var ensureMoment = (value) => {
   if (isMoment(value)) return value;
   value = moment(value);
