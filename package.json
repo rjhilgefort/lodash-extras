@@ -1,6 +1,6 @@
 {
   "name": "lodash-extras",
-  "version": "0.0.6",
+  "version": "0.0.9",
   "description": "An opinionated lodash mod with extras",
   "main": "index.js",
   "scripts": {
