@@ -1,4 +1,10 @@
 /**
+ * This utility assumes `Ember` exists globally
+ */
+import lodashUtils from './_core/lodash-utils';
+
+
+/**
  * Collection of all the utils in here. Add to this as you go.
  */
 let lodashMoment = {};
@@ -35,6 +41,17 @@ export var ensureMoment = (value, valueDefault) => {
   return moment();
 };
 lodashMoment.ensureMoment = ensureMoment;
+
+
+/**
+ * Generate deep `is` methods and override standard methods to handle both
+ *
+ * @method is{Condition}
+ * @param {Object} value: Base value to look through
+ * @param {String} propString: Property string to apply to `get`
+ * @return {Boolean}
+ */
+lodashUtils.buildIsMethods(lodashMoment, lodashMoment);
 
 
 export default lodashMoment;
