@@ -169,7 +169,6 @@ This module is simply for mixins that depend on the presence of the moment globa
 ``` javascript
 // both `moment.before` and `moment.after` are inclusive compares
 _.moment.after(moment(), moment()); // -> true
-
-// `false` will be returned if either param is not `Moment`
-_.moment.after('foo', moment()); // -> false
 ```
+
+See [`moment().isBefore`](http://momentjs.com/docs/#/query/is-before/) and [`moment().isAfter`](http://momentjs.com/docs/#/query/is-after/) for further documentation on `_.moment.after` and `_.moment.before`.

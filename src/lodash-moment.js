@@ -48,8 +48,8 @@ lodashMoment.ensureMoment = ensureMoment;
  * Returns false if either is not `Moment`
  *
  * @method after
- * @param {Moment} date
- * @param {Moment} dateToCompare
+ * @param {Moment|String|Number|Date|Array} date
+ * @param {Moment|String|Number|Date|Array} dateToCompare
  * @return {Boolean}
  */
 export var after = lodashUtils.buildInclusiveCompare('isAfter', lodashMoment);
@@ -61,8 +61,8 @@ lodashMoment.after = after;
  * Returns false if either is not `Moment`
  *
  * @method before
- * @param {Moment} date
- * @param {Moment} dateToCompare
+ * @param {Moment|String|Number|Date|Array} date
+ * @param {Moment|String|Number|Date|Array} dateToCompare
  * @return {Boolean}
  */
 export var before = lodashUtils.buildInclusiveCompare('isBefore', lodashMoment);
