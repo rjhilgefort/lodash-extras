@@ -41,7 +41,7 @@ Additional is conditions
 * `_.isBlank`: Opposite of `_.isPresent`
 * `_.isPromise` Is the object a then-able
 * `_.isDate` Is value a date object
-* `_.isMoment` Is value a moment object
+* `_.moment.isMoment` Is value a moment object
 
 
 #### > `_.is`
@@ -69,7 +69,7 @@ Ensure type methods ensure that a value is of the type specified (default can be
 * `_.ensurePlainObject`
 * `_.ensureBoolean`
 * `_.ensureNumber`
-* `_.ensureMoment`
+* `_.moment.ensureMoment`
 
 ```js
 var foo = 'foo';
@@ -156,3 +156,20 @@ _.deepDelete(foo, 'bar'); // -> {}
 #### > `lodash-ember`
 
 This module constitutes nearly half of the the "lodash-extras" project and I unfortunately do not have the time to do the feature write up for them yet. I opted to shortcut doing the write up as the use case for them is specific to Ember applications. That being said, there's some great stuff in there and I encourage you to [check out the source](src/lodash-ember.js) (again, it's well documented).
+
+#### > `lodash-moment`
+
+This module is simply for mixins that depend on the presence of the moment global variable.
+
+* `_.moment.ensureMoment`
+* `_.moment.isMoment`
+* `_.moment.before`
+* `_.moment.after`
+
+``` javascript
+// both `moment.before` and `moment.after` are inclusive compares
+_.moment.after(moment(), moment()); // -> true
+
+// `false` will be returned if either param is not `Moment`
+_.moment.after('foo', moment()); // -> false
+```
