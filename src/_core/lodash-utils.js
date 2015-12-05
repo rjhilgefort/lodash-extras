@@ -179,4 +179,23 @@ export var buildIsMethods = (namespace, target) => {
 lodashUtils.buildIsMethods = buildIsMethods;
 
 
+/**
+ * Build `before` and `after` methods for moment
+ *
+ * @method buildInclusiveCompare
+ * @param {String} method: either 'isBefore' or 'isAfter'
+ * @param {Object} target: namespace to overload methods on
+ * @return {Function}
+ */
+export var buildInclusiveCompare = (method, target) => {
+  return (date, dateToCompare) => {
+    if (!target.isMoment(date)) return false;
+    if (!target.isMoment(dateToCompare)) return false;
+
+    return (date[method](dateToCompare) || date.isSame(dateToCompare));
+  };
+};
+lodashUtils.buildInclusiveCompare = buildInclusiveCompare;
+
+
 export default lodashUtils;
