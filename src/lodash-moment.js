@@ -44,6 +44,32 @@ lodashMoment.ensureMoment = ensureMoment;
 
 
 /**
+ * Check if `date` is after or same as `dateToCompare`
+ * Returns false if either is not `Moment`
+ *
+ * @method after
+ * @param {Moment} date
+ * @param {Moment} dateToCompare
+ * @return {Boolean}
+ */
+export var after = lodashUtils.buildInclusiveCompare('isAfter', lodashMoment);
+lodashMoment.after = after;
+
+
+/**
+ * Check if `date` is before or same as `dateToCompare`
+ * Returns false if either is not `Moment`
+ *
+ * @method before
+ * @param {Moment} date
+ * @param {Moment} dateToCompare
+ * @return {Boolean}
+ */
+export var before = lodashUtils.buildInclusiveCompare('isBefore', lodashMoment);
+lodashMoment.before = before;
+
+
+/**
  * Generate deep `is` methods and override standard methods to handle both
  *
  * @method is{Condition}
