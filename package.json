@@ -10,6 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/rjhilgefort/lodash-extras.git"
   },
+  "scripts": {
+    "start": "gulp watch",
+    "watch": "gulp watch",
+    "build": "gulp build",
+    "dist": "gulp dist"
+  },
   "keywords": [
     "lodash",
     "extras",
