@@ -189,7 +189,7 @@ lodashUtils.buildIsMethods = buildIsMethods;
  */
 export var buildInclusiveCompare = (method, target) => {
   return (date, dateToCompare, rangeToCompare = 'day') => {
-    return (date[method](dateToCompare) || date.isSame(dateToCompare, rangeToCompare));
+    return (date[method](dateToCompare, rangeToCompare) || date.isSame(dateToCompare, rangeToCompare));
   };
 };
 lodashUtils.buildInclusiveCompare = buildInclusiveCompare;
