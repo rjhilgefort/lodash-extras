@@ -5,14 +5,17 @@ var gulp = require('gulp');
 var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
+var babel = require("gulp-babel");
 var uglify = require('gulp-uglify');
 var rename = require("gulp-rename");
-
+var mocha = require('gulp-mocha');
 var pkg = require('./package.json');
 
 // Configuration
 //-----------------------------------------------
 var buildDir = 'dist';
+var testsDir = 'distTest' +'/tests';
+var testSrcDir = 'distTest' +'/src';
 var buildFile = pkg.name + ".js";
 var buildDirFile = buildDir + '/' + buildFile;
 
@@ -23,7 +26,7 @@ gulp.task('build', function () {
   return browserify({
     debug: true,
     extensions: extensions,
-    entries: './src/index.js'
+    entries: ['./src/index.js']
   })
     .transform(babelify.configure({
       extensions: extensions
