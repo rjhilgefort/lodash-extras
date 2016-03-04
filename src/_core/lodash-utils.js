@@ -14,7 +14,7 @@ export var typeDefaults = () => {
   return {
     'String': '',
     'Array': [],
-    'Plainobject': {},
+    'PlainObject': {},
     'Boolean': false,
     'Number': 1
   };
@@ -49,7 +49,7 @@ export var makeEnsureType = (condition) => {
 
   // Check params: condition
   if (!_.isString(condition)) condition = '';
-  condition = _.capitalize(condition);
+  condition = _.upperFirst(condition);
   if (!_.includes(_.keys(defaults), condition)) {
     throw new Error(`\`condition\` not supported: ${condition}`);
   }

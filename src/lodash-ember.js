@@ -87,7 +87,7 @@ lodashEmber.isEmberCollection = isEmberCollection;
 export var isEmberTransition = function(value) {
   return (
     _.isFunction(value, 'toString') &&
-    _.contains(value.toString(), 'Transition')
+    _.includes(value.toString(), 'Transition')
   );
 };
 lodashEmber.isEmberTransition = isEmberTransition;
