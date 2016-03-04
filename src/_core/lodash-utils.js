@@ -1,3 +1,4 @@
+import _ from 'lodash';
 /**
  * Collection of all the utils in here. Add to this as you go.
  */
@@ -14,7 +15,7 @@ export var typeDefaults = () => {
   return {
     'String': '',
     'Array': [],
-    'PlainObject': {},
+    'Plainobject': {},
     'Boolean': false,
     'Number': 1
   };
@@ -31,7 +32,8 @@ lodashUtils.typeDefaults = typeDefaults;
  */
 export var makeIsType = (klass) => {
   return function(value) {
-    return (value instanceof klass);
+    if(_.isPresent(klass)) return (value instanceof klass);
+    return false;
   };
 };
 lodashUtils.makeIsType = makeIsType;
@@ -50,7 +52,7 @@ export var makeEnsureType = (condition) => {
   // Check params: condition
   if (!_.isString(condition)) condition = '';
   condition = _.capitalize(condition);
-  if (!_.contains(_.keys(defaults), condition)) {
+  if (!_.includes(_.keys(defaults), condition)) {
     throw new Error(`\`condition\` not supported: ${condition}`);
   }
 
@@ -130,7 +132,7 @@ lodashUtils.validIsMethod = validIsMethod;
 export var filterIsMethods = (namespace) => {
   return _.chain(namespace)
     .keys()
-    .filter(validIsMethod, namespace)
+    .filter(_.bind(validIsMethod, namespace))
     .value();
 };
 lodashUtils.filterIsMethods = filterIsMethods;
@@ -148,7 +150,6 @@ lodashUtils.filterIsMethods = filterIsMethods;
  */
 export var overloadMethods = (isMethods, namespace, target) => {
   let oldMethod = {};
-
   _.forEach(isMethods, (method) => {
     // Save old method
     oldMethod[method] = namespace[method];

@@ -28,7 +28,7 @@ lodashEmber.isEmberInstance = isEmberInstance;
  * @param {*} value: Value to check
  * @return {Boolean}
  */
-export var isEmberObject = lodashUtils.makeIsType(Ember.Object);
+export var isEmberObject = lodashUtils.makeIsType(emberCompareClass);
 lodashEmber.isEmberObject = isEmberObject;
 
 
@@ -44,7 +44,7 @@ lodashEmber.isEmberObject = isEmberObject;
  * @param {*} value: Value to check
  * @return {Boolean}
  */
-export var isEmberObjectProxy = lodashUtils.makeIsType(Ember.ObjectProxy);
+export var isEmberObjectProxy = lodashUtils.makeIsType(emberCompareClass);
 lodashEmber.isEmberObjectProxy = isEmberObjectProxy;
 
 
