@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import lodashUtils from './_core/lodash-utils';
 
 

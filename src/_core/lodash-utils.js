@@ -1,4 +1,3 @@
-import _ from 'lodash';
 /**
  * Collection of all the utils in here. Add to this as you go.
  */
@@ -30,12 +29,12 @@ lodashUtils.typeDefaults = typeDefaults;
  * @param {*} klass: A class to check instanceof against
  * @return {Function}
  */
- export var makeIsType = (klass) => {
-   return function(value) {
-     return (value instanceof klass);
-   };
- };
- lodashUtils.makeIsType = makeIsType;
+export var makeIsType = (klass) => {
+  return function(value) {
+    return (value instanceof klass);
+  };
+};
+lodashUtils.makeIsType = makeIsType;
 
 
 /**
