@@ -2,8 +2,7 @@
   "name": "lodash-extras",
   "version": "0.0.10",
   "description": "An opinionated lodash mod with extras",
-  "main": "main.js",
-  "bowser": "index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjhilgefort/lodash-extras.git"
@@ -11,7 +10,6 @@
   "scripts": {
     "start": "gulp watch",
     "watch": "gulp watch",
-    "test": "gulp test",
     "build": "gulp build",
     "dist": "gulp dist"
   },

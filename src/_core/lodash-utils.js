@@ -30,13 +30,12 @@ lodashUtils.typeDefaults = typeDefaults;
  * @param {*} klass: A class to check instanceof against
  * @return {Function}
  */
-export var makeIsType = (klass) => {
-  return function(value) {
-    if(_.isPresent(klass)) return (value instanceof klass);
-    return false;
-  };
-};
-lodashUtils.makeIsType = makeIsType;
+ export var makeIsType = (klass) => {
+   return function(value) {
+     return (value instanceof klass);
+   };
+ };
+ lodashUtils.makeIsType = makeIsType;
 
 
 /**

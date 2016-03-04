@@ -26,8 +26,7 @@ gulp.task('build', function () {
   return browserify({
     debug: true,
     extensions: extensions,
-    //entries: ['./src/index.js', './src/main.js']
-    entries: './src/main.js'
+    entries: ['./src/index.js']
   })
     .transform(babelify.configure({
       extensions: extensions
@@ -42,32 +41,6 @@ gulp.task('compress', ['build'], function () {
     .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest(buildDir));
-});
-
-gulp.task('buildTestSrc', function () {
-    return gulp.src(['./src/**/*.js', '!./src/index.js'])
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(gulp.dest(testSrcDir));
-});
-
-gulp.task('buildTest', function () {
-    return gulp.src('./tests/**/*.js')
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(gulp.dest(testsDir));
-});
-
-gulp.task('test', ['buildTest', 'buildTestSrc'], function () {
-    return gulp.src(testsDir + '/**/*.js', { read: false })
-    .pipe(mocha({
-      reporter: 'spec',
-      globals: {
-        expect: require('chai').expect
-      }
-    }));
 });
 
 gulp.task('watch', ['build'], function () {
