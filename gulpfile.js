@@ -51,7 +51,7 @@ gulp.task('buildTests', function () {
 gulp.task('test', ['build', 'buildTests'], function () {
   return gulp.src('dist/tests/tests.js', {read: false})
     // gulp-mocha needs filepaths so you can't have any plugins before it
-    .pipe(mocha({reporter: 'nyan'}));
+    .pipe(mocha({reporter: 'spec'}));
 });
 
 gulp.task('compress', ['browserify'], function () {

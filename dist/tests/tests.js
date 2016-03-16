@@ -11,9 +11,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 describe('Lodash-extras', function () {
   it('should test', function () {
     //console.log(lodashExtras);
-    console.log(_index.extras);
-    console.log(_index.deepExtras);
-    console.log(_index.allExtras);
+    console.log(_index.core);
+    console.log(_index.deep);
+    console.log(_index.all);
     _chai2.default.expect(true).to.be.true;
   });
 });

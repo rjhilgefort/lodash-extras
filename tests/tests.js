@@ -2,16 +2,16 @@
 import chai from 'chai';
 //var _ = require('lodash');
 //_.mixin(require('../src/lodash-extras'));
-import { extras, deepExtras, allExtras } from '../src/index';
+import { core, deep, all } from '../src/index';
 
 describe(
   'Lodash-extras',
   function () {
     it('should test', function () {
       //console.log(lodashExtras);
-      console.log(extras);
-      console.log(deepExtras);
-      console.log(allExtras);
+      console.log(core);
+      console.log(deep);
+      console.log(all);
       chai.expect(true).to.be.true;
     });
 });

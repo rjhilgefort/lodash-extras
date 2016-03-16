@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import * as extras from './lodash-extras';
+import lodashExtras from './lodash-extras';
 
 
 // Only mixin moment-extras if available
@@ -11,7 +11,10 @@ import * as extras from './lodash-extras';
 // if (_.isPresent(window.Ember)) _.mixin(lodashEmber);
 //
 // // Must be last to override above methods programmatically
-import * as deepExtras from './lodash-deep-extras';
+import lodashDeepExtras from './lodash-deep-extras';
 
-const allExtras = _.merge({}, extras, deepExtras)
-export { extras, deepExtras, allExtras};
+const core = lodashExtras;
+const deep = lodashDeepExtras;
+const all = _.merge({}, core, deep)
+
+export { core, deep, all};
