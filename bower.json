@@ -18,12 +18,14 @@
     ".editorconfig",
     ".gitignore",
     "bower.json",
+    "dist/src",
+    "dist/tests",
     "package.json",
     "gulpfile.js",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "tests",
+
   ],
   "dependencies": {
     "lodash": "^4.6.1"
