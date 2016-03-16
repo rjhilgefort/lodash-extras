@@ -3,7 +3,7 @@
 var _ = require('lodash');
 var gulp = require('gulp');
 var browserify = require('browserify');
-var babelify = require('babelify');
+var del = require('del');
 var source = require('vinyl-source-stream');
 var babel = require("gulp-babel");
 var uglify = require('gulp-uglify');
@@ -14,56 +14,73 @@ var pkg = require('./package.json');
 // Configuration
 //-----------------------------------------------
 var buildDir = 'dist';
-var testsDir = 'distTest' +'/tests';
-var testSrcDir = 'distTest' +'/src';
+var bowerDir = buildDir + '/bower';
+var buildtestsDir = buildDir +'/tests';
+var buildsrcDir = buildDir +'/src';
 var buildFile = pkg.name + ".js";
 var buildDirFile = buildDir + '/bower/' + buildFile;
+var standaloneName = _.camelCase(pkg.name);
+var alljs = '**/*.js';
 
 // Tasks
 //-----------------------------------------------
-gulp.task('browserify', ['build'], function () {
+gulp.task('browserify', ['build', 'cleanBower'], function () {
   var extensions = ['.js'];
+
   return browserify({
     debug: true,
     extensions: extensions,
-    standalone: 'lodashExtras',
-    entries: ['./dist/src/index.js']
+    standalone: standaloneName,
+    entries: [pkg.main]
   })
     .bundle()
     .pipe(source(buildFile))
-    .pipe(gulp.dest(buildDir + '/bower'));
+    .pipe(gulp.dest(bowerDir));
 });
-gulp.task('build', function () {
-  return gulp.src(['./src/**/*.js'])
+gulp.task('build', ['cleanBuild'], function () {
+  return gulp.src(['./src/' + alljs])
     .pipe(babel({
       presets: ['es2015']
     }))
-    .pipe(gulp.dest(buildDir + '/src'))
+    .pipe(gulp.dest(buildsrcDir))
 });
-gulp.task('buildTests', function () {
-  return gulp.src(['./tests/**/*.js'])
+gulp.task('buildTests', ['cleanTests'], function () {
+  return gulp.src(['./tests/' + alljs])
     .pipe(babel({
       presets: ['es2015']
     }))
-    .pipe(gulp.dest(buildDir + '/tests'))
+    .pipe(gulp.dest(buildtestsDir))
 });
 
-gulp.task('test', ['build', 'buildTests'], function () {
-  return gulp.src('dist/tests/tests.js', {read: false})
-    // gulp-mocha needs filepaths so you can't have any plugins before it
-    .pipe(mocha({reporter: 'spec'}));
+gulp.task('cleanBuild', function () {
+  return del([buildsrcDir]);
 });
+
+gulp.task('cleanTests', function () {
+  return del([buildtestsDir]);
+});
+
+gulp.task('cleanBower', function () {
+  return del([bowerDir]);
+});
+
 
 gulp.task('compress', ['browserify'], function () {
   return gulp.src(buildDirFile)
     .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
-    .pipe(gulp.dest(buildDir + '/bower'));
+    .pipe(gulp.dest(bowerDir));
+});
+
+gulp.task('test', ['build', 'buildTests'], function () {
+  return gulp.src(buildtestsDir + alljs, {read: false})
+    .pipe(mocha({reporter: 'spec'}));
 });
 
 gulp.task('watch', ['browserify'], function () {
-  gulp.watch('src/**/*.js', ['build']);
+  gulp.watch('src/' + alljs, ['build']);
 });
 
-gulp.task('dist', ['compress']);
+
+gulp.task('dist', ['test', 'compress']);
 gulp.task('default', ['watch']);

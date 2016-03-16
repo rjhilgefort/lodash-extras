@@ -5,6 +5,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.before = exports.after = exports.ensureMoment = exports.isMoment = undefined;
 
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _moment = require('moment');
+
+var _moment2 = _interopRequireDefault(_moment);
+
 var _lodashUtils = require('./_core/lodash-utils');
 
 var _lodashUtils2 = _interopRequireDefault(_lodashUtils);
@@ -23,11 +31,12 @@ var lodashMoment = {};
  * @param {*} value: Value to check
  * @return {Boolean}
  */
+
 /**
  * This utility assumes `Ember` exists globally
  */
 var isMoment = exports.isMoment = function isMoment(value) {
-  return moment.isMoment(value);
+  return _moment2.default.isMoment(value);
 };
 lodashMoment.isMoment = isMoment;
 
@@ -43,10 +52,10 @@ lodashMoment.isMoment = isMoment;
  */
 var ensureMoment = exports.ensureMoment = function ensureMoment(value, valueDefault) {
   if (isMoment(value)) return value;
-  value = moment(value);
+  value = (0, _moment2.default)(value);
   if (value.isValid()) return value;
   if (isMoment(valueDefault)) return valueDefault;
-  return moment();
+  return (0, _moment2.default)();
 };
 lodashMoment.ensureMoment = ensureMoment;
 
