@@ -2,7 +2,7 @@
   "name": "lodash-extras",
   "version": "0.0.12",
   "description": "An opinionated lodash mod with extras",
-  "main": "index.js",
+  "main": "dist/src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjhilgefort/lodash-extras.git"
