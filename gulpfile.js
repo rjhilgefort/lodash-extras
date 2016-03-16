@@ -17,35 +17,53 @@ var buildDir = 'dist';
 var testsDir = 'distTest' +'/tests';
 var testSrcDir = 'distTest' +'/src';
 var buildFile = pkg.name + ".js";
-var buildDirFile = buildDir + '/' + buildFile;
+var buildDirFile = buildDir + '/bower/' + buildFile;
 
 // Tasks
 //-----------------------------------------------
-gulp.task('build', function () {
+gulp.task('browserify', ['build'], function () {
   var extensions = ['.js'];
   return browserify({
     debug: true,
     extensions: extensions,
-    entries: ['./src/index.js']
+    standalone: 'lodashExtras',
+    entries: ['./dist/src/index.js']
   })
-    .transform(babelify.configure({
-      extensions: extensions
-    }))
     .bundle()
     .pipe(source(buildFile))
-    .pipe(gulp.dest(buildDir));
+    .pipe(gulp.dest(buildDir + '/bower'));
+});
+gulp.task('build', function () {
+  return gulp.src(['./src/**/*.js'])
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    .pipe(gulp.dest(buildDir + '/src'))
+});
+gulp.task('buildTests', function () {
+  return gulp.src(['./tests/**/*.js'])
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    .pipe(gulp.dest(buildDir + '/tests'))
 });
 
-gulp.task('compress', ['build'], function () {
+gulp.task('test', ['build', 'buildTests'], function () {
+  return gulp.src('dist/tests/tests.js', {read: false})
+    // gulp-mocha needs filepaths so you can't have any plugins before it
+    .pipe(mocha({reporter: 'nyan'}));
+});
+
+gulp.task('compress', ['browserify'], function () {
   return gulp.src(buildDirFile)
     .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
-    .pipe(gulp.dest(buildDir));
+    .pipe(gulp.dest(buildDir + '/bower'));
 });
 
-gulp.task('watch', ['build'], function () {
+gulp.task('watch', ['browserify'], function () {
   gulp.watch('src/**/*.js', ['build']);
 });
 
-gulp.task('dist', ['build', 'compress']);
+gulp.task('dist', ['compress']);
 gulp.task('default', ['watch']);

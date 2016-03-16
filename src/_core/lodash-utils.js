@@ -1,3 +1,4 @@
+var _ = require('lodash');
 /**
  * Collection of all the utils in here. Add to this as you go.
  */
