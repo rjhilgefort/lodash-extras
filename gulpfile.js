@@ -28,7 +28,7 @@ var alljs = '**/*.js';
 
 // Function to remove ember from index.js
 function removeEmber(content) {
-  return _.replace(content, `import lodashEmber from './lodash-ember';`, `let lodashEmber;`);
+  return _.replace(content, 'import lodashEmber from \'./lodash-ember\';', 'let lodashEmber;');
 };
 
 // Tasks
@@ -114,8 +114,8 @@ gulp.task('testServer', ['build', 'buildTests'], function () {
     .pipe(mocha({reporter: 'spec'}));
 });
 
-gulp.task('watch', ['browserify'], function () {
-  gulp.watch('src/' + alljs, ['build']);
+gulp.task('watch', ['testServer'], function () {
+  gulp.watch('src/' + alljs, ['testServer']);
 });
 
 gulp.task('clean', ['cleanBuild', 'cleanTmp', 'cleanTests', 'cleanClient']);
