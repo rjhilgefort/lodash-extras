@@ -2,7 +2,7 @@
   "name": "lodash-extras",
   "version": "0.0.12",
   "description": "An opinionated lodash mod with extras",
-  "main": "dist/src/index.js",
+  "main": "dist/server/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjhilgefort/lodash-extras.git"
@@ -32,11 +32,13 @@
     "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.2",
+    "gulp-change": "^1.0.0",
     "gulp-mocha": "^2.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.4.2",
     "mocha": "^2.4.5",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "yargs": "^4.3.1"
   },
   "dependencies": {
     "lodash": "^4.6.1",
