@@ -37,8 +37,8 @@ function removeEmber(content) {
 // Tasks
 //-----------------------------------------------
 
-// Clientside processing Tasks
-// Build clientside release
+// Client-side processing Tasks
+// Build client-side release
 gulp.task('browserify', ['build', 'cleanClient'], function () {
   var extensions = ['.js'];
 
@@ -53,7 +53,7 @@ gulp.task('browserify', ['build', 'cleanClient'], function () {
     .pipe(gulp.dest(clientDir));
 });
 
-// Build clientside with release ember with ember
+// Build client-side with release ember with ember
 gulp.task('browserifyWithEmber', ['buildWithEmber', 'cleanClient'], function () {
   var extensions = ['.js'];
 
@@ -68,7 +68,7 @@ gulp.task('browserifyWithEmber', ['buildWithEmber', 'cleanClient'], function () 
     .pipe(gulp.dest(clientDir));
 });
 
-// Build clientside tests
+// Build client-side tests
 gulp.task('browserifyTests', ['buildTests'], function () {
   var extensions = ['.js'];
 
@@ -83,7 +83,7 @@ gulp.task('browserifyTests', ['buildTests'], function () {
     .pipe(gulp.dest(clientTests));
 });
 
-// Minify clientside release files
+// Minify client-side release files
 gulp.task('compress', ['client'], function () {
   return gulp.src(clientDir + alljs)
     .pipe(uglify())
@@ -92,7 +92,7 @@ gulp.task('compress', ['client'], function () {
 });
 
 // Build Tasks
-// Babelify code without Ember for serverside release
+// Babelify code without Ember for server-side release
 gulp.task('build', ['cleanBuild'], function () {
   return gulp.src(['./src/' + alljs, '!./src/**/*ember*.js'])
     .pipe(change(removeEmber))
@@ -128,7 +128,7 @@ gulp.task('buildClientTests', ['browserifyTests'], function () {
 
 // Clean Tasks
 
-// Clean serverside release build
+// Clean server-side release build
 gulp.task('cleanBuild', function () {
   return del([serverDir]);
 });
@@ -149,13 +149,13 @@ gulp.task('cleanClient', function () {
 });
 
 // Test Tasks
-// Run serverside tests
+// Run server-side tests
 gulp.task('testServer', ['build', 'buildTests'], function () {
   return gulp.src([serverTests + alljs, '!' + serverTests + '/**/*ember*.js'], { read: false })
     .pipe(mocha({ reporter: 'spec' }));
 });
 
-// Run clientside test
+// Run client-side test
 gulp.task('testClient', ['dist', 'buildClientTests'], function () {
   return gulp.src(clientTests + '/runner.html')
     .pipe(mochaPhantomJS({ reporter: 'spec' }));
@@ -170,7 +170,7 @@ gulp.task('watch', ['testServer'], function () {
 // Clean all build and test artifacts
 gulp.task('clean', ['cleanBuild', 'cleanTmpSrc', 'cleanTests', 'cleanClient']);
 
-// Build clientside releases
+// Build client-side releases
 gulp.task('client', ['browserify','browserifyWithEmber']);
 
 // Complete build for client and server

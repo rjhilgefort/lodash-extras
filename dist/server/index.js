@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.all = exports.lodashEmber = exports.lodashMoment = exports.deep = exports.core = undefined;
+exports.all = exports.ember = exports.moment = exports.deep = exports.core = undefined;
 
 var _lodash = require('lodash');
 
@@ -34,6 +34,6 @@ var all = _lodash2.default.merge({}, core, deep, moment, ember);
 
 exports.core = core;
 exports.deep = deep;
-exports.lodashMoment = _lodashMoment2.default;
-exports.lodashEmber = lodashEmber;
+exports.moment = moment;
+exports.ember = ember;
 exports.all = all;
