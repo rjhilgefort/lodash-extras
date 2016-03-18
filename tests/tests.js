@@ -1,7 +1,7 @@
 
 import chai from 'chai';
 import _ from'lodash';
-import { core, deep, lodashMoment, lodashEmber, all} from '../../dist/server/index';
+import { core, deep, lodashMoment, lodashEmber, all} from '../../../dist/server/index';
 _.merge(_, all);
 
 describe(

@@ -10,6 +10,7 @@ var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var mocha = require('gulp-mocha');
+var mochaPhantomJS = require('gulp-mocha-phantomjs');
 var pkg = require('./package.json');
 
 // Configuration
@@ -18,8 +19,10 @@ var buildDir = 'dist';
 var clientDir = buildDir + '/client';
 var serverDir = buildDir + '/server';
 var tmpDir = 'tmp';
-var buildtestsDir = tmpDir +'/tests';
-var buildsrcDir = tmpDir +'/src';
+var testsDir = tmpDir + '/tests';
+var clientTests = testsDir + '/client';
+var serverTests = testsDir + '/server';
+var buildsrcDir = tmpDir + '/src';
 var buildFile = pkg.name + '.js';
 var buildFileWithEmber = pkg.name + '-w-ember.js';;
 var buildDirFile = clientDir + buildFile;
@@ -61,7 +64,21 @@ gulp.task('browserify', ['build', 'cleanClient'], function () {
     .pipe(gulp.dest(clientDir));
 });
 
-gulp.task('buildWithEmber', ['cleanTmp'], function () {
+gulp.task('browserifyTests', ['buildTests'], function () {
+  var extensions = ['.js'];
+
+  return browserify({
+    debug: true,
+    extensions: extensions,
+    standalone: standaloneName,
+    entries: [serverTests + '/tests.js']
+  })
+    .bundle()
+    .pipe(source('browserTests.js'))
+    .pipe(gulp.dest(clientTests));
+});
+
+gulp.task('buildWithEmber', ['cleanTmpSrc'], function () {
   return gulp.src(['./src/' + alljs])
     .pipe(babel({
       presets: ['es2015']
@@ -83,19 +100,24 @@ gulp.task('buildTests', ['cleanTests'], function () {
     .pipe(babel({
       presets: ['es2015']
     }))
-    .pipe(gulp.dest(buildtestsDir))
+    .pipe(gulp.dest(serverTests))
+});
+
+gulp.task('buildClientTests', ['browserifyTests'], function () {
+  return gulp.src(['./tests/runner.html'])
+    .pipe(gulp.dest(clientTests))
 });
 
 gulp.task('cleanBuild', function () {
   return del([serverDir]);
 });
 
-gulp.task('cleanTmp', function () {
-  return del([tmpDir]);
+gulp.task('cleanTmpSrc', function () {
+  return del([buildsrcDir]);
 });
 
 gulp.task('cleanTests', function () {
-  return del([buildtestsDir]);
+  return del([testsDir]);
 });
 
 gulp.task('cleanClient', function () {
@@ -110,15 +132,20 @@ gulp.task('compress', ['client'], function () {
 });
 
 gulp.task('testServer', ['build', 'buildTests'], function () {
-  return gulp.src([buildtestsDir + alljs, '!' + buildtestsDir + '/**/*ember*.js'], {read: false})
+  return gulp.src([serverTests + alljs, '!' + serverTests + '/**/*ember*.js'], {read: false})
     .pipe(mocha({reporter: 'spec'}));
+});
+
+gulp.task('testClient', ['dist', 'buildClientTests'], function () {
+  return gulp.src(clientTests + '/runner.html')
+    .pipe(mochaPhantomJS({reporter: 'spec'}));
 });
 
 gulp.task('watch', ['testServer'], function () {
   gulp.watch('src/' + alljs, ['testServer']);
 });
 
-gulp.task('clean', ['cleanBuild', 'cleanTmp', 'cleanTests', 'cleanClient']);
+gulp.task('clean', ['cleanBuild', 'cleanTmpSrc', 'cleanTests', 'cleanClient']);
 gulp.task('client', ['browserify','browserifyWithEmber']);
 gulp.task('dist', ['compress']);
 gulp.task('default', ['watch']);
