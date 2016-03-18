@@ -1,4 +1,5 @@
-var _ = require('lodash');
+import _ from 'lodash';
+
 /**
  * Collection of all the utils in here. Add to this as you go.
  */

@@ -31,10 +31,6 @@ var lodashMoment = {};
  * @param {*} value: Value to check
  * @return {Boolean}
  */
-
-/**
- * This utility assumes `Ember` exists globally
- */
 var isMoment = exports.isMoment = function isMoment(value) {
   return _moment2.default.isMoment(value);
 };

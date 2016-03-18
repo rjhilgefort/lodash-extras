@@ -3,7 +3,14 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var _ = require('lodash');
+exports.buildInclusiveCompare = exports.buildIsMethods = exports.overloadMethods = exports.filterIsMethods = exports.validIsMethod = exports.makeDeepEnsureType = exports.makeEnsureType = exports.makeIsType = exports.typeDefaults = undefined;
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /**
  * Collection of all the utils in here. Add to this as you go.
  */
@@ -51,14 +58,14 @@ var makeEnsureType = exports.makeEnsureType = function makeEnsureType(condition)
   var defaults = lodashUtils.typeDefaults();
 
   // Check params: condition
-  if (!_.isString(condition)) condition = '';
-  condition = _.upperFirst(condition);
-  if (!_.includes(_.keys(defaults), condition)) {
+  if (!_lodash2.default.isString(condition)) condition = '';
+  condition = _lodash2.default.upperFirst(condition);
+  if (!_lodash2.default.includes(_lodash2.default.keys(defaults), condition)) {
     throw new Error('`condition` not supported: ' + condition);
   }
 
   // Shortcut
-  var isCondition = _['is' + condition];
+  var isCondition = _lodash2.default['is' + condition];
 
   /**
    * Interface for `ensureType` methods
@@ -70,12 +77,12 @@ var makeEnsureType = exports.makeEnsureType = function makeEnsureType(condition)
    */
   return function (value, valueDefault) {
     // Determine `valueDefault`: if nothing provided, or provided doesn't match type
-    if (_.isUndefined(valueDefault) || !isCondition(valueDefault)) {
-      valueDefault = _.clone(defaults[condition]);
+    if (_lodash2.default.isUndefined(valueDefault) || !isCondition(valueDefault)) {
+      valueDefault = _lodash2.default.clone(defaults[condition]);
     }
 
     // Actual "ensure" check
-    if (!_['is' + condition](value)) value = valueDefault;
+    if (!_lodash2.default['is' + condition](value)) value = valueDefault;
 
     return value;
   };
@@ -92,7 +99,7 @@ lodashUtils.makeEnsureType = makeEnsureType;
  */
 var makeDeepEnsureType = exports.makeDeepEnsureType = function makeDeepEnsureType(condition) {
   return function (collection, propString, valueDefault) {
-    return _.set(collection, propString, lodashUtils.makeEnsureType(condition)(_.get(collection, propString), valueDefault));
+    return _lodash2.default.set(collection, propString, lodashUtils.makeEnsureType(condition)(_lodash2.default.get(collection, propString), valueDefault));
   };
 };
 lodashUtils.makeDeepEnsureType = makeDeepEnsureType;
@@ -106,7 +113,7 @@ lodashUtils.makeDeepEnsureType = makeDeepEnsureType;
  * @return {Boolean}
  */
 var validIsMethod = exports.validIsMethod = function validIsMethod(key) {
-  return _.startsWith(key, 'is') && this[key].length === 1;
+  return _lodash2.default.startsWith(key, 'is') && this[key].length === 1;
 };
 lodashUtils.validIsMethod = validIsMethod;
 
@@ -118,7 +125,7 @@ lodashUtils.validIsMethod = validIsMethod;
  * @return {Object} `namespace` with just the "is" methods
  */
 var filterIsMethods = exports.filterIsMethods = function filterIsMethods(namespace) {
-  return _.chain(namespace).keys().filter(_.bind(validIsMethod, namespace)).value();
+  return _lodash2.default.chain(namespace).keys().filter(_lodash2.default.bind(validIsMethod, namespace)).value();
 };
 lodashUtils.filterIsMethods = filterIsMethods;
 
@@ -134,14 +141,14 @@ lodashUtils.filterIsMethods = filterIsMethods;
  */
 var overloadMethods = exports.overloadMethods = function overloadMethods(isMethods, namespace, target) {
   var oldMethod = {};
-  _.forEach(isMethods, function (method) {
+  _lodash2.default.forEach(isMethods, function (method) {
     // Save old method
     oldMethod[method] = namespace[method];
 
     // Make new method that also handles `get`. Apply method to exports.
     target[method] = function (value, propString) {
-      if (_.size(arguments) === 2) {
-        return namespace[method](_.get.apply(_, arguments));
+      if (_lodash2.default.size(arguments) === 2) {
+        return namespace[method](_lodash2.default.get.apply(_lodash2.default, arguments));
       }
       return oldMethod[method].apply(oldMethod, arguments);
     };

@@ -1,10 +1,6 @@
 import _ from 'lodash';
 import moment from 'moment';
-/**
- * This utility assumes `Ember` exists globally
- */
 import lodashUtils from './_core/lodash-utils';
-
 
 /**
  * Collection of all the utils in here. Add to this as you go.

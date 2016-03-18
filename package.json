@@ -10,9 +10,10 @@
   "scripts": {
     "start": "gulp watch",
     "watch": "gulp watch",
-    "build": "gulp build",
+    "build": "gulp dist",
     "dist": "gulp dist",
     "test": "gulp testServer",
+    "testServer": "gulp testeServer",
     "testClient": "gulp testClient"
   },
   "keywords": [
@@ -42,7 +43,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "lodash": "^4.6.1",
-    "moment": "^2.12.0"
+    "lodash": "4.6.1",
+    "moment": "2.12.0"
   }
 }

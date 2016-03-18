@@ -3,7 +3,6 @@
  */
 import lodashUtils from './_core/lodash-utils';
 
-export var empty = {};
 /**
  * Collection of all the utils in here. Add to this as you go.
  */
