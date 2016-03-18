@@ -10,4 +10,4 @@ const moment = lodashMoment;
 const ember = lodashEmber;
 const all = _.merge({}, core, deep, moment, ember)
 
-export { core, deep, lodashMoment, lodashEmber, all};
+export { core, deep, moment, ember, all};
