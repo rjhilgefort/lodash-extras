@@ -6,7 +6,7 @@
     "Rob Hilgefort <rjhilgefort@gmail.com>"
   ],
   "description": "An opinionated lodash mod with extras",
-  "main": "dist/lodash-extras.js",
+  "main": "dist/client/lodash-extras.js",
   "keywords": [
     "lodash",
     "extras",
@@ -18,14 +18,14 @@
     ".editorconfig",
     ".gitignore",
     "bower.json",
+    "dist/server",
     "package.json",
     "gulpfile.js",
     "node_modules",
     "bower_components",
-    "test",
     "tests"
   ],
   "dependencies": {
-    "lodash": "~4.6.1"
+    "lodash": "4.6.1"
   }
 }

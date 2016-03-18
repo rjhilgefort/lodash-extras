@@ -1,12 +1,28 @@
-import _ from 'lodash';
-import moment from 'moment';
-import lodashUtils from './_core/lodash-utils';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.before = exports.after = exports.ensureMoment = exports.isMoment = undefined;
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _moment = require('moment');
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _lodashUtils = require('./_core/lodash-utils');
+
+var _lodashUtils2 = _interopRequireDefault(_lodashUtils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Collection of all the utils in here. Add to this as you go.
  */
-let lodashMoment = {};
-
+var lodashMoment = {};
 
 /**
  * Check if a variable is a moment date object
@@ -15,11 +31,10 @@ let lodashMoment = {};
  * @param {*} value: Value to check
  * @return {Boolean}
  */
-export var isMoment = (value) => {
-  return moment.isMoment(value);
+var isMoment = exports.isMoment = function isMoment(value) {
+  return _moment2.default.isMoment(value);
 };
 lodashMoment.isMoment = isMoment;
-
 
 /**
  * Ensure value is a moment object.
@@ -31,15 +46,14 @@ lodashMoment.isMoment = isMoment;
  * @param {*} valueDefault: What to default to
  * @return {Moment}
  */
-export var ensureMoment = (value, valueDefault) => {
+var ensureMoment = exports.ensureMoment = function ensureMoment(value, valueDefault) {
   if (isMoment(value)) return value;
-  value = moment(value);
+  value = (0, _moment2.default)(value);
   if (value.isValid()) return value;
   if (isMoment(valueDefault)) return valueDefault;
-  return moment();
+  return (0, _moment2.default)();
 };
 lodashMoment.ensureMoment = ensureMoment;
-
 
 /**
  * Check if `date` is after or same as `dateToCompare`
@@ -50,9 +64,8 @@ lodashMoment.ensureMoment = ensureMoment;
  * @param {Moment|String|Number|Date|Array} dateToCompare
  * @return {Boolean}
  */
-export var after = lodashUtils.buildInclusiveCompare('isAfter', lodashMoment);
+var after = exports.after = _lodashUtils2.default.buildInclusiveCompare('isAfter', lodashMoment);
 lodashMoment.after = after;
-
 
 /**
  * Check if `date` is before or same as `dateToCompare`
@@ -63,9 +76,8 @@ lodashMoment.after = after;
  * @param {Moment|String|Number|Date|Array} dateToCompare
  * @return {Boolean}
  */
-export var before = lodashUtils.buildInclusiveCompare('isBefore', lodashMoment);
+var before = exports.before = _lodashUtils2.default.buildInclusiveCompare('isBefore', lodashMoment);
 lodashMoment.before = before;
-
 
 /**
  * Generate deep `is` methods and override standard methods to handle both
@@ -75,7 +87,6 @@ lodashMoment.before = before;
  * @param {String} propString: Property string to apply to `get`
  * @return {Boolean}
  */
-lodashUtils.buildIsMethods(lodashMoment, lodashMoment);
+_lodashUtils2.default.buildIsMethods(lodashMoment, lodashMoment);
 
-
-export default lodashMoment;
+exports.default = lodashMoment;

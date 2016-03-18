@@ -1,10 +1,20 @@
-import _ from 'lodash';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.buildInclusiveCompare = exports.buildIsMethods = exports.overloadMethods = exports.filterIsMethods = exports.validIsMethod = exports.makeDeepEnsureType = exports.makeEnsureType = exports.makeIsType = exports.typeDefaults = undefined;
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Collection of all the utils in here. Add to this as you go.
  */
-let lodashUtils = {};
-
+var lodashUtils = {};
 
 /**
  * Helper for JS types and defaults for each type
@@ -12,7 +22,7 @@ let lodashUtils = {};
  * @method typeDefaults
  * @return {PlainObject}
  */
-export var typeDefaults = () => {
+var typeDefaults = exports.typeDefaults = function typeDefaults() {
   return {
     'String': '',
     'Array': [],
@@ -23,7 +33,6 @@ export var typeDefaults = () => {
 };
 lodashUtils.typeDefaults = typeDefaults;
 
-
 /**
  * Helper to make `_.isEmber{Class}`
  *
@@ -31,13 +40,12 @@ lodashUtils.typeDefaults = typeDefaults;
  * @param {*} klass: A class to check instanceof against
  * @return {Function}
  */
-export var makeIsType = (klass) => {
-  return function(value) {
-    return (value instanceof klass);
+var makeIsType = exports.makeIsType = function makeIsType(klass) {
+  return function (value) {
+    return value instanceof klass;
   };
 };
 lodashUtils.makeIsType = makeIsType;
-
 
 /**
  * Helper to make `_.ensureType`
@@ -46,18 +54,18 @@ lodashUtils.makeIsType = makeIsType;
  * @param {String} condition: Lodash method to apply
  * @return {Function}
  */
-export var makeEnsureType = (condition) => {
-  let defaults = lodashUtils.typeDefaults();
+var makeEnsureType = exports.makeEnsureType = function makeEnsureType(condition) {
+  var defaults = lodashUtils.typeDefaults();
 
   // Check params: condition
-  if (!_.isString(condition)) condition = '';
-  condition = _.upperFirst(condition);
-  if (!_.includes(_.keys(defaults), condition)) {
-    throw new Error(`\`condition\` not supported: ${condition}`);
+  if (!_lodash2.default.isString(condition)) condition = '';
+  condition = _lodash2.default.upperFirst(condition);
+  if (!_lodash2.default.includes(_lodash2.default.keys(defaults), condition)) {
+    throw new Error('`condition` not supported: ' + condition);
   }
 
   // Shortcut
-  let isCondition = _[`is${condition}`];
+  var isCondition = _lodash2.default['is' + condition];
 
   /**
    * Interface for `ensureType` methods
@@ -67,20 +75,19 @@ export var makeEnsureType = (condition) => {
    * @param {*} [valueDefault=defaults[condition]: What to default to
    * @return {*} Defaulted value, or the value itself if pass
    */
-  return (value, valueDefault) => {
+  return function (value, valueDefault) {
     // Determine `valueDefault`: if nothing provided, or provided doesn't match type
-    if (_.isUndefined(valueDefault) || !isCondition(valueDefault)) {
-      valueDefault = _.clone(defaults[condition]);
+    if (_lodash2.default.isUndefined(valueDefault) || !isCondition(valueDefault)) {
+      valueDefault = _lodash2.default.clone(defaults[condition]);
     }
 
     // Actual "ensure" check
-    if (!_[`is${condition}`](value)) value = valueDefault;
+    if (!_lodash2.default['is' + condition](value)) value = valueDefault;
 
     return value;
   };
 };
 lodashUtils.makeEnsureType = makeEnsureType;
-
 
 /**
  * Helper to make `_.deepEnsure{Type}`
@@ -90,20 +97,12 @@ lodashUtils.makeEnsureType = makeEnsureType;
  * @param {*} valueDefault: What to assign when not of the desired type
  * @return {Function}
  */
-export var makeDeepEnsureType = (condition) => {
-  return (collection, propString, valueDefault) => {
-    return _.set(
-      collection,
-      propString,
-      lodashUtils.makeEnsureType(condition)(
-        _.get(collection, propString),
-        valueDefault
-      )
-    );
+var makeDeepEnsureType = exports.makeDeepEnsureType = function makeDeepEnsureType(condition) {
+  return function (collection, propString, valueDefault) {
+    return _lodash2.default.set(collection, propString, lodashUtils.makeEnsureType(condition)(_lodash2.default.get(collection, propString), valueDefault));
   };
 };
 lodashUtils.makeDeepEnsureType = makeDeepEnsureType;
-
 
 /**
  * Determined if lodash key/method is valid to make deep (`is` methods that only have one argument)
@@ -113,14 +112,10 @@ lodashUtils.makeDeepEnsureType = makeDeepEnsureType;
  * @param {String} key: method name
  * @return {Boolean}
  */
-export var validIsMethod = function(key) {
-  return (
-    _.startsWith(key, 'is') &&
-    (this[key].length === 1)
-  );
+var validIsMethod = exports.validIsMethod = function validIsMethod(key) {
+  return _lodash2.default.startsWith(key, 'is') && this[key].length === 1;
 };
 lodashUtils.validIsMethod = validIsMethod;
-
 
 /**
  * Filter out all valid `is` methods from a namespace
@@ -129,14 +124,10 @@ lodashUtils.validIsMethod = validIsMethod;
  * @param {String} namespace: Collection of methods
  * @return {Object} `namespace` with just the "is" methods
  */
-export var filterIsMethods = (namespace) => {
-  return _.chain(namespace)
-    .keys()
-    .filter(_.bind(validIsMethod, namespace))
-    .value();
+var filterIsMethods = exports.filterIsMethods = function filterIsMethods(namespace) {
+  return _lodash2.default.chain(namespace).keys().filter(_lodash2.default.bind(validIsMethod, namespace)).value();
 };
 lodashUtils.filterIsMethods = filterIsMethods;
-
 
 /**
  * Overload normal lodash methods to handle deep syntax
@@ -148,23 +139,22 @@ lodashUtils.filterIsMethods = filterIsMethods;
  * @param {Object} target: namespace to overload methods on
  * @return {Undefined}
  */
-export var overloadMethods = (isMethods, namespace, target) => {
-  let oldMethod = {};
-  _.forEach(isMethods, (method) => {
+var overloadMethods = exports.overloadMethods = function overloadMethods(isMethods, namespace, target) {
+  var oldMethod = {};
+  _lodash2.default.forEach(isMethods, function (method) {
     // Save old method
     oldMethod[method] = namespace[method];
 
     // Make new method that also handles `get`. Apply method to exports.
-    target[method] = function(value, propString) {
-      if (_.size(arguments) === 2) {
-        return namespace[method](_.get(...arguments));
+    target[method] = function (value, propString) {
+      if (_lodash2.default.size(arguments) === 2) {
+        return namespace[method](_lodash2.default.get.apply(_lodash2.default, arguments));
       }
-      return oldMethod[method](...arguments);
+      return oldMethod[method].apply(oldMethod, arguments);
     };
   });
 };
 lodashUtils.overloadMethods = overloadMethods;
-
 
 /**
  * Build `isMethods`
@@ -174,11 +164,10 @@ lodashUtils.overloadMethods = overloadMethods;
  * @param {Object} target: namespace to overload methods on
  * @return {Undefined}
  */
-export var buildIsMethods = (namespace, target) => {
+var buildIsMethods = exports.buildIsMethods = function buildIsMethods(namespace, target) {
   overloadMethods(filterIsMethods(namespace), namespace, target);
-}
+};
 lodashUtils.buildIsMethods = buildIsMethods;
-
 
 /**
  * Build `before` and `after` methods for moment
@@ -188,10 +177,11 @@ lodashUtils.buildIsMethods = buildIsMethods;
  * @param {Object} target: namespace to overload methods on
  * @return {Function}
  */
-export var buildInclusiveCompare = (method, target) => {
-  return (date, dateToCompare) => (date[method](dateToCompare) || date.isSame(dateToCompare));
+var buildInclusiveCompare = exports.buildInclusiveCompare = function buildInclusiveCompare(method, target) {
+  return function (date, dateToCompare) {
+    return date[method](dateToCompare) || date.isSame(dateToCompare);
+  };
 };
 lodashUtils.buildInclusiveCompare = buildInclusiveCompare;
 
-
-export default lodashUtils;
+exports.default = lodashUtils;
