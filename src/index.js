@@ -8,6 +8,7 @@ const core = lodashExtras;
 const deep = lodashDeepExtras;
 const moment = lodashMoment;
 const ember = lodashEmber;
-const all = _.merge({}, core, deep, moment, ember)
+const all = _.merge({}, core, deep, ember);
+all.moment = moment;
 
 export { core, deep, moment, ember, all};
