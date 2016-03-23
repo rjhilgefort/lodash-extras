@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.before = exports.after = exports.ensureMoment = exports.isMoment = undefined;
+exports.ensureMoment = exports.isMoment = undefined;
 
 var _lodash = require('lodash');
 
@@ -54,30 +54,6 @@ var ensureMoment = exports.ensureMoment = function ensureMoment(value, valueDefa
   return (0, _moment2.default)();
 };
 lodashMoment.ensureMoment = ensureMoment;
-
-/**
- * Check if `date` is after or same as `dateToCompare`
- * Returns false if either is not `Moment`
- *
- * @method after
- * @param {Moment|String|Number|Date|Array} date
- * @param {Moment|String|Number|Date|Array} dateToCompare
- * @return {Boolean}
- */
-var after = exports.after = _lodashUtils2.default.buildInclusiveCompare('isAfter', lodashMoment);
-lodashMoment.after = after;
-
-/**
- * Check if `date` is before or same as `dateToCompare`
- * Returns false if either is not `Moment`
- *
- * @method before
- * @param {Moment|String|Number|Date|Array} date
- * @param {Moment|String|Number|Date|Array} dateToCompare
- * @return {Boolean}
- */
-var before = exports.before = _lodashUtils2.default.buildInclusiveCompare('isBefore', lodashMoment);
-lodashMoment.before = before;
 
 /**
  * Generate deep `is` methods and override standard methods to handle both

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.buildInclusiveCompare = exports.buildIsMethods = exports.overloadMethods = exports.filterIsMethods = exports.validIsMethod = exports.makeDeepEnsureType = exports.makeEnsureType = exports.makeIsType = exports.typeDefaults = undefined;
+exports.buildIsMethods = exports.overloadMethods = exports.filterIsMethods = exports.validIsMethod = exports.makeDeepEnsureType = exports.makeEnsureType = exports.makeIsType = exports.typeDefaults = undefined;
 
 var _lodash = require('lodash');
 
@@ -168,20 +168,5 @@ var buildIsMethods = exports.buildIsMethods = function buildIsMethods(namespace,
   overloadMethods(filterIsMethods(namespace), namespace, target);
 };
 lodashUtils.buildIsMethods = buildIsMethods;
-
-/**
- * Build `before` and `after` methods for moment
- *
- * @method buildInclusiveCompare
- * @param {String} method: either 'isBefore' or 'isAfter'
- * @param {Object} target: namespace to overload methods on
- * @return {Function}
- */
-var buildInclusiveCompare = exports.buildInclusiveCompare = function buildInclusiveCompare(method, target) {
-  return function (date, dateToCompare) {
-    return date[method](dateToCompare) || date.isSame(dateToCompare);
-  };
-};
-lodashUtils.buildInclusiveCompare = buildInclusiveCompare;
 
 exports.default = lodashUtils;
