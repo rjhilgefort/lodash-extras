@@ -30,8 +30,7 @@ var core = _lodashExtras2.default;
 var deep = _lodashDeepExtras2.default;
 var moment = _lodashMoment2.default;
 var ember = lodashEmber;
-var all = _lodash2.default.merge({}, core, deep, ember);
-all.moment = moment;
+var all = _lodash2.default.merge({}, core, deep, ember, { moment: moment });
 
 exports.core = core;
 exports.deep = deep;
