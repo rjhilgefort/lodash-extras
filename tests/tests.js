@@ -1,8 +1,8 @@
 
 import chai from 'chai';
 import _ from'lodash';
-import { deep } from '../../../dist/server/index';
-_.merge(_, deep);
+import { all } from '../../../dist/server/index';
+_.merge(_, all);
 
 describe(
   'Lodash-extras',
