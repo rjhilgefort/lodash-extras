@@ -61,7 +61,7 @@ describe(
       it('exists', () => expect(_.isPresent(_.isPromise)).to.be.true);
 
       it('Identifies promises', () => {
-        const testObject = new Promise((reslove, reject) => resolve());
+        const testObject = new Promise((resolve, reject) => resolve());
         expect(_.isPromise(testObject)).to.be.true
       });
 

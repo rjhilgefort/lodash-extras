@@ -76,7 +76,7 @@ gulp.task('browserifyTests', ['buildTests'], function () {
     debug: true,
     extensions: extensions,
     standalone: standaloneName,
-    entries: [serverTests + '/tests.js']
+    entries: [serverTests + '/index.js']
   })
     .bundle()
     .pipe(source('browserTests.js'))
@@ -151,7 +151,7 @@ gulp.task('cleanClient', function () {
 // Test Tasks
 // Run server-side tests
 gulp.task('testServer', ['build', 'buildTests'], function () {
-  return gulp.src([serverTests + alljs, '!' + serverTests + '/**/*ember*.js'], { read: false })
+  return gulp.src([serverTests + alljs, '!' + serverTests + '/**/*ember*.js', '!' + serverTests + 'index.js'], { read: false })
     .pipe(mocha({ reporter: 'spec' }));
 });
 

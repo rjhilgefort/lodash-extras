@@ -137,7 +137,7 @@ describe(
     });
 
     describe('isArguments', () => {
-      it('exists', () => expect(_.isPresent(_.isArguments)).to.be.true)
+      it('exists', () => expect(_.isPresent(_.isArguments)).to.be.true);
 
       it('Identifies Arguments object', () => {
         const testObject = { testKey: arguments };
@@ -156,7 +156,7 @@ describe(
     });
 
     describe('isArray', () => {
-      it('exists', () => expect(_.isPresent(_.isArray)).to.be.true)
+      it('exists', () => expect(_.isPresent(_.isArray)).to.be.true);
 
       it('Identifies Array object', () => {
         const testObject = { testKey: ['foo'] };
@@ -175,7 +175,7 @@ describe(
     });
 
     describe('isArrayBuffer', () => {
-      it('exists', () => expect(_.isPresent(_.isArrayBuffer)).to.be.true)
+      it('exists', () => expect(_.isPresent(_.isArrayBuffer)).to.be.true);
 
       it('Identifies ArrayBuffer object', () => {
         const testObject = { testKey: new ArrayBuffer(2) };
@@ -194,7 +194,7 @@ describe(
     });
 
     describe('isArrayLike', () => {
-      it('exists', () => expect(_.isPresent(_.isArrayLike)).to.be.true)
+      it('exists', () => expect(_.isPresent(_.isArrayLike)).to.be.true);
 
       it('Identifies Array-likes', () => {
         let testObject = { testKey: ['foo'] };
@@ -219,7 +219,7 @@ describe(
     });
 
     describe('isArrayLikeObject', () => {
-      it('exists', () => expect(_.isPresent(_.isArrayLikeObject)).to.be.true)
+      it('exists', () => expect(_.isPresent(_.isArrayLikeObject)).to.be.true);
 
       it('Identifies Array-like objects', () => {
         let testObject = { testKey: ['foo'] };
@@ -244,7 +244,7 @@ describe(
     });
 
     describe('isBoolean', () => {
-      it('exists', () => expect(_.isPresent(_.isBoolean)).to.be.true)
+      it('exists', () => expect(_.isPresent(_.isBoolean)).to.be.true);
 
       it('Identifies Booleans', () => {
         const testObject = { testKey: false };
@@ -263,22 +263,26 @@ describe(
     });
 
     describe('isBuffer', () => {
-      it('exists', () => expect(_.isPresent(_.isBuffer)).to.be.true)
+      console.log(new Buffer(2));
+      console.log(_.isBuffer(new Buffer(2)));
+      it('exists', () => expect(_.isPresent(_.isBuffer)).to.be.true);
 
-      it('Identifies Buffer', () => {
-        const testObject = { testKey: new Buffer(2) };
-        expect(_.isBuffer(testObject, 'testKey')).to.be.true;
-      });
+      if(!_.isNil(Buffer)) {
+        it('Identifies Buffer', () => {
+          const testObject = { testKey: new Buffer(2) };
+          expect(_.isBuffer(testObject, 'testKey')).to.be.true;
+        });
 
-      it('Identifies non-Buffer', () => {
-        const testObject = { testKey: 'foo' };
-        expect(_.isBuffer(testObject, 'testKey')).to.be.false;
-      });
+        it('Identifies non-Buffer', () => {
+          const testObject = { testKey: 'foo' };
+          expect(_.isBuffer(testObject, 'testKey')).to.be.false;
+        });
 
-      it('Handles undefined key', () => {
-        const testObject = { testKey: new Buffer(2) };
-        expect(_.isBuffer(testObject, 'testKey2')).to.be.false;
-      });
+        it('Handles undefined key', () => {
+          const testObject = { testKey: new Buffer(2) };
+          expect(_.isBuffer(testObject, 'testKey2')).to.be.false;
+        });
+      }
     });
 
     describe('isDate', () => {
@@ -785,7 +789,7 @@ describe(
       it('exists', () => expect(_.isPresent(_.isPromise)).to.be.true);
 
       it('Identifies promises', () => {
-        const testPromise = new Promise((reslove, reject) => resolve());
+        const testPromise = new Promise((resolve, reject) => resolve());
         const testObject = { testKey: testPromise };
         expect(_.isPromise(testObject, 'testKey')).to.be.true;
       });
@@ -796,7 +800,7 @@ describe(
       });
 
       it('Handles undefined key', () => {
-        const testPromise = new Promise((reslove, reject) => resolve());
+        const testPromise = new Promise((resolve, reject) => resolve());
         const testObject = { testKey: testPromise };
         expect(_.isPromise(testObject, 'testKey2')).to.be.false;
       });
