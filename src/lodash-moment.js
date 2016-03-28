@@ -7,7 +7,6 @@ import lodashUtils from './_core/lodash-utils';
  */
 let lodashMoment = {};
 
-
 /**
  * Check if a variable is a moment date object
  *
@@ -19,7 +18,6 @@ export var isMoment = (value) => {
   return moment.isMoment(value);
 };
 lodashMoment.isMoment = isMoment;
-
 
 /**
  * Ensure value is a moment object.
@@ -40,7 +38,6 @@ export var ensureMoment = (value, valueDefault) => {
 };
 lodashMoment.ensureMoment = ensureMoment;
 
-
 /**
  * Generate deep `is` methods and override standard methods to handle both
  *
@@ -50,6 +47,5 @@ lodashMoment.ensureMoment = ensureMoment;
  * @return {Boolean}
  */
 lodashUtils.buildIsMethods(lodashMoment, lodashMoment);
-
 
 export default lodashMoment;
