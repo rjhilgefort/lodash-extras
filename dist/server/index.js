@@ -23,7 +23,7 @@ var _lodashDeepExtras2 = _interopRequireDefault(_lodashDeepExtras);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var lodashEmber = undefined;
+var lodashEmber = void 0;
 
 
 var core = _lodashExtras2.default;
