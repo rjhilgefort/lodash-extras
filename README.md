@@ -4,6 +4,8 @@
 
 ## Installation / Usage
 
+Follow the below instructions, depending on your runtime environment (client/server). After which, the `_` (lodash) object will have been modified with the "extras" included in this project.
+
 ### Client-side
 
 This project depends on [lodash](https://lodash.com/) being loaded first. Then simply [download](https://github.com/rjhilgefort/lodash-extras/releases), or install this package via bower. After which, you'll need to source both projects in your web application.
@@ -31,11 +33,9 @@ Then merge in the all object from lodashExtras into _
 _.merge(_, lodashExtras.all);
 ```
 
-The `_` (lodash) object will now have been modified with the "extras" included in this project. Enjoy!
-
 ### Server-side
 
-Install via npm 
+Install via npm
 
 ```shell
 npm install --save lodash-extras
@@ -47,7 +47,7 @@ Then merge in the all object from lodashExtras into _
 _.merge(_, lodashExtras.all);
 ```
 
-The `_` (lodash) object will now have been modified with the "extras" included in this project. Enjoy!
+The `_` (lodash) object will now have been modified with the "extras" included in this project.
 
 
 ## Community
