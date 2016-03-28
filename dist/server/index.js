@@ -23,15 +23,14 @@ var _lodashDeepExtras2 = _interopRequireDefault(_lodashDeepExtras);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var lodashEmber = undefined;
+var lodashEmber = void 0;
 
 
 var core = _lodashExtras2.default;
 var deep = _lodashDeepExtras2.default;
 var moment = _lodashMoment2.default;
 var ember = lodashEmber;
-var all = _lodash2.default.merge({}, core, deep, ember);
-all.moment = moment;
+var all = _lodash2.default.merge({}, core, deep, ember, { moment: moment });
 
 exports.core = core;
 exports.deep = deep;

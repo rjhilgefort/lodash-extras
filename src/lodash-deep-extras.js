@@ -5,7 +5,6 @@ import lodashExtras from './lodash-extras';
 // All lodash extraDeep methods to export
 let lodashDeepExtras = {};
 
-
 /**
  * Generate deep `is` methods and override standard methods to handle both
  *
@@ -16,7 +15,6 @@ let lodashDeepExtras = {};
  */
 lodashUtils.buildIsMethods(_, lodashDeepExtras);
 lodashUtils.buildIsMethods(lodashExtras, lodashDeepExtras);
-
 
 /**
  * Generate `ensure` methods- Ensure that value is of type x, deeply
@@ -30,7 +28,6 @@ lodashUtils.buildIsMethods(lodashExtras, lodashDeepExtras);
 _.forEach(_.keys(lodashUtils.typeDefaults()), (type) => {
   lodashExtras[`deepEnsure${type}`] = lodashUtils.makeDeepEnsureType(type);
 });
-
 
 /**
  * Delete deeply nested properties without checking existence down the tree first
@@ -57,6 +54,5 @@ export var deepDelete = function(value, propString) {
   }
 };
 lodashDeepExtras.deepDelete = deepDelete;
-
 
 export default lodashDeepExtras;
