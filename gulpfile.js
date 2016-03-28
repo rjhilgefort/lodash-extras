@@ -1,5 +1,4 @@
 // Dependencies
-//-----------------------------------------------
 var _ = require('lodash');
 var gulp = require('gulp');
 var browserify = require('browserify');
@@ -14,7 +13,6 @@ var mochaPhantomJS = require('gulp-mocha-phantomjs');
 var pkg = require('./package.json');
 
 // Configuration
-//-----------------------------------------------
 var buildDir = 'dist';
 var clientDir = buildDir + '/client';
 var serverDir = buildDir + '/server';
@@ -24,64 +22,39 @@ var clientTests = testsDir + '/client';
 var serverTests = testsDir + '/server';
 var buildsrcDir = tmpDir + '/src';
 var buildFile = pkg.name + '.js';
-var buildFileWithEmber = pkg.name + '-w-ember.js';;
+var buildFileWithEmber = pkg.name + '-w-ember.js';
 var buildDirFile = clientDir + buildFile;
 var standaloneName = _.camelCase(pkg.name);
 var alljs = '**/*.js';
-
-// Function to remove ember from index.js
-function removeEmber(content) {
-  return _.replace(content, 'import lodashEmber from \'./lodash-ember\';', 'let lodashEmber;');
-};
-
-// Tasks
-//-----------------------------------------------
+var extensions = ['.js'];
+var mochaSettings, babelSettings;
 
 // Client-side processing Tasks
-// Build client-side release
-gulp.task('browserify', ['build', 'cleanClient'], function () {
-  var extensions = ['.js'];
+//-----------------------------------------------
 
+var browserifyTask = function(entries, sourceFile, destination) {
   return browserify({
     debug: true,
     extensions: extensions,
     standalone: standaloneName,
-    entries: [pkg.main]
+    entries: entries
   })
     .bundle()
-    .pipe(source(buildFile))
-    .pipe(gulp.dest(clientDir));
-});
+    .pipe(source(sourceFile))
+    .pipe(gulp.dest(destination));
+};
+
+// Build client-side release
+gulp.task('browserify', ['build', 'cleanClient'],
+          browserifyTask([pkg.main], buildFile, clientDir));
 
 // Build client-side with release ember with ember
-gulp.task('browserifyWithEmber', ['buildWithEmber', 'cleanClient'], function () {
-  var extensions = ['.js'];
-
-  return browserify({
-    debug: true,
-    extensions: extensions,
-    standalone: standaloneName,
-    entries: [buildsrcDir + '/index.js']
-  })
-    .bundle()
-    .pipe(source(buildFileWithEmber))
-    .pipe(gulp.dest(clientDir));
-});
+gulp.task('browserifyWithEmber', ['buildWithEmber', 'cleanClient'],
+          browserifyTask([buildsrcDir + '/index.js'], buildFileWithEmber, clientDir));
 
 // Build client-side tests
-gulp.task('browserifyTests', ['buildTests'], function () {
-  var extensions = ['.js'];
-
-  return browserify({
-    debug: true,
-    extensions: extensions,
-    standalone: standaloneName,
-    entries: [serverTests + '/tests.js']
-  })
-    .bundle()
-    .pipe(source('browserTests.js'))
-    .pipe(gulp.dest(clientTests));
-});
+gulp.task('browserifyTests', ['buildTests'],
+          browserifyTask([serverTests + '/tests.js'], 'browserTests.js', clientTests));
 
 // Minify client-side release files
 gulp.task('compress', ['client'], function () {
@@ -91,32 +64,34 @@ gulp.task('compress', ['client'], function () {
     .pipe(gulp.dest(buildDir));
 });
 
-// Build Tasks
+// Server-side processing Tasks
+//-----------------------------------------------
+babelSettings = { presets: ['es2015'] };
+
 // Babelify code without Ember for server-side release
 gulp.task('build', ['cleanBuild'], function () {
   return gulp.src(['./src/' + alljs, '!./src/**/*ember*.js'])
     .pipe(change(removeEmber))
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(gulp.dest(serverDir))
+    .pipe(babel(babelSettings))
+    .pipe(gulp.dest(serverDir));
+
+  // Function to remove ember from index.js
+  function removeEmber(content) {
+    return _.replace(content, 'import lodashEmber from \'./lodash-ember\';', 'let lodashEmber;');
+  };
 });
 
 // Babelify code with Ember
 gulp.task('buildWithEmber', ['cleanTmpSrc'], function () {
   return gulp.src(['./src/' + alljs])
-    .pipe(babel({
-      presets: ['es2015']
-    }))
+    .pipe(babel(babelSettings))
     .pipe(gulp.dest(buildsrcDir))
 });
 
 // Babelify tests
 gulp.task('buildTests', ['cleanTests'], function () {
   return gulp.src(['./tests/' + alljs])
-    .pipe(babel({
-      presets: ['es2015']
-    }))
+    .pipe(babel(babelSettings))
     .pipe(gulp.dest(serverTests))
 });
 
@@ -126,7 +101,9 @@ gulp.task('buildClientTests', ['browserifyTests'], function () {
     .pipe(gulp.dest(clientTests))
 });
 
+
 // Clean Tasks
+//-----------------------------------------------
 
 // Clean server-side release build
 gulp.task('cleanBuild', function () {
@@ -149,19 +126,24 @@ gulp.task('cleanClient', function () {
 });
 
 // Test Tasks
+//-----------------------------------------------
+mochaSettings = { reporter: 'spec' };
+
 // Run server-side tests
 gulp.task('testServer', ['build', 'buildTests'], function () {
   return gulp.src([serverTests + alljs, '!' + serverTests + '/**/*ember*.js'], { read: false })
-    .pipe(mocha({ reporter: 'spec' }));
+    .pipe(mocha(mochaSettings));
 });
 
 // Run client-side test
 gulp.task('testClient', ['dist', 'buildClientTests'], function () {
   return gulp.src(clientTests + '/runner.html')
-    .pipe(mochaPhantomJS({ reporter: 'spec' }));
+    .pipe(mochaPhantomJS(mochaSettings));
 });
 
-// Helper Tasks
+// Main Tasks
+//-----------------------------------------------
+
 // Watch changes to src and test severside on change
 gulp.task('watch', ['testServer'], function () {
   gulp.watch('src/' + alljs, ['testServer']);
