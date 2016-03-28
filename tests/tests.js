@@ -1,14 +1,14 @@
 
 import chai from 'chai';
 import _ from'lodash';
-import { all } from '../../../dist/server/index';
-_.merge(_, all);
+import { deep } from '../../../dist/server/index';
+_.merge(_, deep);
 
 describe(
   'Lodash-extras',
   function () {
     it('should test', function () {
-      console.log(all);
+      console.log(deep);
       chai.expect(true).to.be.true;
     });
 });
