@@ -3,7 +3,6 @@ import _ from 'lodash';
 import moment from 'moment';
 import { all } from '../../../dist/server/index';
 
-
 describe(
   'Lodash-moment tests',
   function () {
