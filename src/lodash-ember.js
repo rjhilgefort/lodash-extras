@@ -3,12 +3,10 @@
  */
 import lodashUtils from './_core/lodash-utils';
 
-
 /**
  * Collection of all the utils in here. Add to this as you go.
  */
 export var lodashEmber = {};
-
 
 /**
  * Check that a value is an instance, as designated by Ember
@@ -19,7 +17,6 @@ export var lodashEmber = {};
  */
 export var isEmberInstance = (value) => Ember.typeOf(value) === 'instance';
 lodashEmber.isEmberInstance = isEmberInstance;
-
 
 /**
  * Check that a value is, at least, a subclass of Ember.Object
@@ -87,11 +84,10 @@ lodashEmber.isEmberCollection = isEmberCollection;
 export var isEmberTransition = function(value) {
   return (
     _.isFunction(value, 'toString') &&
-    _.contains(value.toString(), 'Transition')
+    _.includes(value.toString(), 'Transition')
   );
 };
 lodashEmber.isEmberTransition = isEmberTransition;
-
 
 /**
  * Lodash forEach
@@ -389,6 +385,4 @@ lodashEmber.promiseReject = promiseReject;
  */
 lodashUtils.buildIsMethods(lodashEmber, lodashEmber);
 
-
-export var lodashEmber;
 export default lodashEmber;

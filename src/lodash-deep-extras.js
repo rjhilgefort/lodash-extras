@@ -1,6 +1,6 @@
+import _ from 'lodash';
 import lodashUtils from './_core/lodash-utils';
 import lodashExtras from './lodash-extras';
-
 
 // All lodash extraDeep methods to export
 let lodashDeepExtras = {};
