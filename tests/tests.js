@@ -8,7 +8,6 @@ describe(
   'Lodash-extras',
   function () {
     it('should test', function () {
-      console.log(deep);
       chai.expect(true).to.be.true;
     });
 });
