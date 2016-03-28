@@ -33,15 +33,17 @@ var mochaSettings, babelSettings;
 //-----------------------------------------------
 
 var browserifyTask = function(entries, sourceFile, destination) {
-  return browserify({
-    debug: true,
-    extensions: extensions,
-    standalone: standaloneName,
-    entries: entries
-  })
-    .bundle()
-    .pipe(source(sourceFile))
-    .pipe(gulp.dest(destination));
+  return function() {
+    return browserify({
+      debug: true,
+      extensions: extensions,
+      standalone: standaloneName,
+      entries: entries
+    })
+      .bundle()
+      .pipe(source(sourceFile))
+      .pipe(gulp.dest(destination));
+  };
 };
 
 // Build client-side release
