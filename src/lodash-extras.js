@@ -6,7 +6,6 @@ import lodashUtils from './_core/lodash-utils';
  */
 let lodashExtras = {};
 
-
 /**
  * Helper to check if a variable is defined and present
  *
@@ -16,7 +15,6 @@ let lodashExtras = {};
  */
 export var isPresent = (value) => (!_.isUndefined(value) && !_.isNull(value));
 lodashExtras.isPresent = isPresent;
-
 
 /**
  * Helper to check if a variable is defined and present
@@ -28,7 +26,6 @@ lodashExtras.isPresent = isPresent;
 export var isBlank = (value) => !_.isPresent(value);
 lodashExtras.isBlank = isBlank;
 
-
 /**
  * Helper to check if a variable is a date
  *
@@ -39,7 +36,6 @@ lodashExtras.isBlank = isBlank;
 export var isDate = (value) => _.typeOf(value) === 'date';
 lodashExtras.isDate = isDate;
 
-
 /**
  * Helper to check if a variable is a promise
  *
@@ -49,7 +45,6 @@ lodashExtras.isDate = isDate;
  */
 export var isPromise = (value) => _.isFunction(value, 'then');
 lodashExtras.isPromise = isPromise;
-
 
 /**
  * Helper to check a value for an array of LoDash boolean conditions
@@ -100,7 +95,6 @@ export var is = function(value, conditions) {
 };
 lodashExtras.is = is;
 
-
 /**
  * Generate `ensure` methods- Ensure that value is of type x
  *
@@ -116,7 +110,6 @@ _.forEach(
   }
 );
 
-
 /**
  * Javascript `typeof` alias
  *
@@ -126,6 +119,5 @@ _.forEach(
  */
 export var typeOf = (value) => typeof value;
 lodashExtras.typeOf = typeOf;
-
 
 export default lodashExtras;
