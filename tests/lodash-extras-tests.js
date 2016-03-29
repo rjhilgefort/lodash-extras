@@ -18,14 +18,29 @@ describe(
         expect(_.isPresent(testObject)).to.be.true;
       });
 
+      it('Identifies present String', () => {
+        const testObject = 'foo';
+        expect(_.isPresent(testObject)).to.be.true;
+      });
+
+      it('Identifies present Number', () => {
+        const testObject = 1;
+        expect(_.isPresent(testObject)).to.be.true;
+      });
+
+      it('Identifies present Boolean', () => {
+        const testObject = false;
+        expect(_.isPresent(testObject)).to.be.true;
+      });
+
       it('Identifies undefined objects', () => {
         let testObject;
-        expect(_.isPresent(testObject)).to.be.false
+        expect(_.isPresent(testObject)).to.be.false;
       });
 
       it('Identifies null objects', () => {
         const testObject = null;
-        expect(_.isPresent(testObject)).to.be.false
+        expect(_.isPresent(testObject)).to.be.false;
       });
     });
 
@@ -34,11 +49,25 @@ describe(
 
       it('Identifies blank objects', () => {
         let testObject;
-        expect(_.isBlank(testObject)).to.be.true
+        expect(_.isBlank(testObject)).to.be.true;
       });
 
       it('Identifies non-blank objects', () => {
         const testObject = { };
+        expect(_.isBlank(testObject)).to.be.false;
+      });
+      it('Identifies non-blank String', () => {
+        const testObject = 'foo';
+        expect(_.isBlank(testObject)).to.be.false;
+      });
+
+      it('Identifies non-blank Number', () => {
+        const testObject = 1;
+        expect(_.isBlank(testObject)).to.be.false;
+      });
+
+      it('Identifies non-blank Boolean', () => {
+        const testObject = false;
         expect(_.isBlank(testObject)).to.be.false;
       });
     });
@@ -48,7 +77,7 @@ describe(
 
       it('Identifies dates', () => {
         const testObject = new Date();
-        expect(_.isDate(testObject)).to.be.true
+        expect(_.isDate(testObject)).to.be.true;
       });
 
       it('Identifies non-dates', () => {
@@ -61,8 +90,8 @@ describe(
       it('exists', () => expect(_.isPresent(_.isPromise)).to.be.true);
 
       it('Identifies promises', () => {
-        const testObject = new Promise((reslove, reject) => resolve());
-        expect(_.isPromise(testObject)).to.be.true
+        const testObject = new Promise((resolve, reject) => resolve());
+        expect(_.isPromise(testObject)).to.be.true;
       });
 
       it('Identifies non-promises', () => {
@@ -87,19 +116,19 @@ describe(
       it('Identifies match', () => {
         const testObject = { };
         const conditions = ['isPresent', 'isObject'];
-        expect(_.is(testObject, conditions)).to.be.true
+        expect(_.is(testObject, conditions)).to.be.true;
       });
 
       it('Identifies non-match', () => {
         const testObject = { };
         const conditions = ['isPresent', 'isBlank'];
-        expect(_.is(testObject, conditions)).to.be.false
+        expect(_.is(testObject, conditions)).to.be.false;
       });
 
       it('Displays an error for single condition but completes', () => {
         const testObject = { };
         const conditions = ['isPresent'];
-        expect(_.is(testObject, conditions)).to.be.true
+        expect(_.is(testObject, conditions)).to.be.true;
         expect(console.error.calledOnce).to.be.true;
         expect(console.error.getCall(0).args[0]).to.equal("Don't call `is` helper with just one condition- use that condition directly");
       });
@@ -107,7 +136,7 @@ describe(
       it('Returns false for non-string conditions and warns', () => {
         const testObject = { };
         const conditions = ['isPresent', 2];
-        expect(_.is(testObject, conditions)).to.be.false
+        expect(_.is(testObject, conditions)).to.be.false;
         expect(console.warn.calledOnce).to.be.true;
         expect(console.warn.getCall(0).args[0]).to.equal('`condition` was not a string: 2');
       });
@@ -115,19 +144,19 @@ describe(
       it('Identifies match with ! condition', () => {
         const testObject = { };
         const conditions = ['isPresent', '!isBlank'];
-        expect(_.is(testObject, conditions)).to.be.true
+        expect(_.is(testObject, conditions)).to.be.true;
       });
 
-      it('Identifies match with is ommited', () => {
+      it('Identifies match with "is" omitted', () => {
         const testObject = { };
         const conditions = ['Present', '!Blank'];
-        expect(_.is(testObject, conditions)).to.be.true
+        expect(_.is(testObject, conditions)).to.be.true;
       });
 
       it('Identifies and returns false for invalid methods', () => {
         const testObject = { };
         const conditions = ['Foo', '!Bar'];
-        expect(_.is(testObject, conditions)).to.be.false
+        expect(_.is(testObject, conditions)).to.be.false;
         expect(console.warn.calledOnce).to.be.true;
         expect(console.warn.getCall(0).args[0]).to.equal('`condition` was not a valid lodash method: isFoo');
       });
@@ -145,6 +174,13 @@ describe(
         const testObject = { };
         const valueDefault = 'test';
         expect(_.ensureString(testObject, valueDefault)).to.equal(valueDefault);
+      });
+
+      it('Returns string even if supplied default is not a string', () => {
+        const testObject = { };
+        const valueDefault = 1;
+        const expectedReturn = '';
+        expect(_.ensureString(testObject, valueDefault)).to.equal(expectedReturn);
       });
 
       it('Returns string even when default is not supplied', () => {
@@ -167,6 +203,13 @@ describe(
         expect(_.ensureArray(testObject, valueDefault)).to.equal(valueDefault);
       });
 
+      it('Returns Array even if supplied default is not a Array', () => {
+        const testObject = { };
+        const valueDefault = 1;
+        const expectedReturn = [];
+        expect(_.ensureArray(testObject, valueDefault)).to.eql(expectedReturn);
+      });
+
       it('Returns Array even when default is not supplied', () => {
         const testObject = { };
         expect(_.isArray(_.ensureArray(testObject))).to.be.true;
@@ -177,14 +220,21 @@ describe(
       it('exists', () => expect(_.isPresent(_.ensurePlainObject)).to.be.true);
 
       it('Returns PlainObject when valid', () => {
-        const testObject = { foo:'bar' };
+        const testObject = { foo: 'bar' };
         expect(_.ensurePlainObject(testObject)).to.equal(testObject);
       });
 
       it('Returns default value when not a PlainObject', () => {
         const testObject = () => 'foo';
-        const valueDefault = { default: 'value' };
+        const valueDefault = { defaultValue: 'foo' };
         expect(_.ensurePlainObject(testObject, valueDefault)).to.equal(valueDefault);
+      });
+
+      it('Returns PlainObject even if supplied default is not a PlainObject', () => {
+        const testObject = () => 'foo';
+        const valueDefault = 1;
+        const expectedReturn = { };
+        expect(_.ensurePlainObject(testObject, valueDefault)).to.eql(expectedReturn);
       });
 
       it('Returns PlainObject even when default is not supplied', () => {
@@ -207,6 +257,13 @@ describe(
         const testObject = { };
         const valueDefault = true;
         expect(_.ensureBoolean(testObject, valueDefault)).to.equal(valueDefault);
+      });
+
+      it('Returns Boolean even if supplied default is not a Boolean', () => {
+        const testObject = () => 'foo';
+        const valueDefault = 1;
+        const expectedReturn = false;
+        expect(_.ensureBoolean(testObject, valueDefault)).to.equal(expectedReturn);
       });
 
       it('Returns Boolean even when default is not supplied', () => {
