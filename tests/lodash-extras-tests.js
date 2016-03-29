@@ -10,14 +10,14 @@ describe(
     beforeEach( () => {
       _.runInContext().merge(_, all);
       testDefaults = {
-         _null: null,
-         _undefined: undefined,
+        _null: null,
+        _undefined: undefined,
         _string: '',
         _boolean: true,
-        _function: () => {},
+        _function: () => { },
         _number: 2,
         _array: [],
-        _object: {}
+        _object: { }
       };
     });
 
