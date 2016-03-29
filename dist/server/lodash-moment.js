@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ensureMoment = exports.isMoment = undefined;
+exports.ensureMoment = exports.isMoment = void 0;
 
 var _lodash = require('lodash');
 

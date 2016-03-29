@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.all = exports.ember = exports.moment = exports.deep = exports.core = undefined;
+exports.all = exports.ember = exports.moment = exports.deep = exports.core = void 0;
 
 var _lodash = require('lodash');
 
@@ -23,7 +23,7 @@ var _lodashDeepExtras2 = _interopRequireDefault(_lodashDeepExtras);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var lodashEmber = undefined;
+var lodashEmber = void 0;
 
 
 var core = _lodashExtras2.default;

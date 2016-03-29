@@ -27,16 +27,6 @@ export var isBlank = (value) => !_.isPresent(value);
 lodashExtras.isBlank = isBlank;
 
 /**
- * Helper to check if a variable is a date
- *
- * @method isDate
- * @param {*} value: Value to check
- * @return {Boolean}
- */
-export var isDate = (value) => _.typeOf(value) === 'date';
-lodashExtras.isDate = isDate;
-
-/**
  * Helper to check if a variable is a promise
  *
  * @method isPromise
