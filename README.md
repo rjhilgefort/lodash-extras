@@ -47,9 +47,6 @@ Then merge in the all object from lodashExtras into _
 _.merge(_, lodashExtras.all);
 ```
 
-The `_` (lodash) object will now have been modified with the "extras" included in this project.
-
-
 ## Community
 
 [![Join the chat at https://gitter.im/rjhilgefort/lodash-extras](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rjhilgefort/lodash-extras)
