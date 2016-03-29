@@ -84,8 +84,8 @@ var is = exports.is = function is(value, conditions) {
   if (_lodash2.default.isPresent(conditions) && !_lodash2.default.isArray(conditions)) conditions = [];
   if (conditions.length <= 1) console.error("Don't call `is` helper with just one condition- use that condition directly");
   return _lodash2.default.every(conditions, function (condition) {
-    var result = void 0,
-        not = void 0;
+    var result = undefined,
+        not = undefined;
 
     // Check for valid condition
     if (!_lodash2.default.isString(condition)) {

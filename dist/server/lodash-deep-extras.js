@@ -56,8 +56,8 @@ _lodash2.default.forEach(_lodash2.default.keys(_lodashUtils2.default.typeDefault
  * @return {undefined} Doesn't return success/failure, to match `delete`'s return
  */
 var deepDelete = exports.deepDelete = function deepDelete(value, propString) {
-  var currentValue = void 0,
-      i = void 0;
+  var currentValue = undefined,
+      i = undefined;
 
   // Delete if present
   if (_lodash2.default.isPresent(value, propString)) {
