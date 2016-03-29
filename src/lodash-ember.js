@@ -1,6 +1,4 @@
-/**
- * This utility assumes `Ember` exists globally
- */
+// This utility assumes `Ember` exists globally
 import lodashUtils from './_core/lodash-utils';
 
 /**
@@ -28,11 +26,9 @@ lodashEmber.isEmberInstance = isEmberInstance;
 export var isEmberObject = lodashUtils.makeIsType(Ember.Object);
 lodashEmber.isEmberObject = isEmberObject;
 
-
 /**
  * NOTE: isEmberArray has been excluded as Ember.Array is not an Ember.Object
  */
-
 
 /**
  * Check that a value is, at least, a subclass of Ember.ObjectProxy
@@ -44,7 +40,6 @@ lodashEmber.isEmberObject = isEmberObject;
 export var isEmberObjectProxy = lodashUtils.makeIsType(Ember.ObjectProxy);
 lodashEmber.isEmberObjectProxy = isEmberObjectProxy;
 
-
 /**
  * Check that a value is, at least, a subclass of Ember.ArrayProxy
  *
@@ -54,7 +49,6 @@ lodashEmber.isEmberObjectProxy = isEmberObjectProxy;
  */
 export var isEmberArrayProxy = lodashUtils.makeIsType(Ember.ArrayProxy);
 lodashEmber.isEmberArrayProxy = isEmberArrayProxy;
-
 
 /**
  * Check that the value is a descendent of an Ember Class
@@ -72,7 +66,6 @@ export var isEmberCollection = function(value) {
   );
 };
 lodashEmber.isEmberCollection = isEmberCollection;
-
 
 /**
  * Check that value is Ember Transition
@@ -101,7 +94,6 @@ lodashEmber.isEmberTransition = isEmberTransition;
 export var _forEach = _.forEach;
 lodashEmber._forEach = _forEach;
 
-
 /**
  * Override lodash `forEach` to support ember arrays/objects
  *
@@ -122,7 +114,6 @@ export var forEach = function(collection, callback, thisArg) {
 };
 lodashEmber.forEach = forEach;
 
-
 /**
  * Lodash reduce
  *
@@ -135,7 +126,6 @@ lodashEmber.forEach = forEach;
  */
 export var _reduce = _.reduce;
 lodashEmber._reduce = _reduce;
-
 
 /**
  * Override lodash `reduce` to support ember arrays/objects
@@ -158,7 +148,6 @@ export var reduce = function(collection, callback, currentValue, thisArg) {
 };
 lodashEmber.reduce = reduce;
 
-
 /**
  * Lodash map
  *
@@ -170,7 +159,6 @@ lodashEmber.reduce = reduce;
  */
 export var _map = _.map;
 lodashEmber._map = _map;
-
 
 /**
  * Override lodash `map` to support ember arrays/objects
@@ -189,7 +177,6 @@ export var map = function(collection, callback, thisArg) {
 };
 lodashEmber.map = map;
 
-
 /**
  * Lodash `get` alias to private namespace
  *
@@ -200,7 +187,6 @@ lodashEmber.map = map;
  */
 export var _get = _.get;
 lodashEmber._get = _get;
-
 
 /**
  * Retrieves the value of a property in an object tree.
@@ -220,7 +206,6 @@ export var get = function(collection, propertyPath) {
 };
 lodashEmber.get = get;
 
-
 /**
  * Lodash `set` alias to private namespace
  *
@@ -232,7 +217,6 @@ lodashEmber.get = get;
  */
 export var _set = _.set;
 lodashEmber._set = _set;
-
 
 /**
  * Retrieves the value of a property in an object tree.
@@ -254,7 +238,6 @@ export var set = function(collection, propertyPath, value) {
 };
 lodashEmber.set = set;
 
-
 /**
  * Original lodash isEmpty
  *
@@ -264,7 +247,6 @@ lodashEmber.set = set;
  */
 export var _isEmpty = _.isEmpty;
 lodashEmber._isEmpty = _isEmpty;
-
 
 /**
  * Determines if the value is empty or not
@@ -285,7 +267,6 @@ export var isEmpty = function(value) {
 };
 lodashEmber.isEmpty = isEmpty;
 
-
 /**
  * Original lodash clone
  *
@@ -295,7 +276,6 @@ lodashEmber.isEmpty = isEmpty;
  */
 export var _clone = _.clone;
 lodashEmber._clone = _clone;
-
 
 /**
  * Returns a cloned copy of value
@@ -310,7 +290,6 @@ export var clone = function(value) {
 };
 lodashEmber.clone = clone;
 
-
 /**
  * Alias for `array.pop` or `arrayProxy.popObject`
  *
@@ -322,7 +301,6 @@ export var pop = function(value) {
   return (_.isEmberArrayProxy(value)) ? value.popObject() : value.pop();
 };
 lodashEmber.pop = pop;
-
 
 /**
  * Alias for `array.shift` or `arrayProxy.shiftObject`
@@ -336,7 +314,6 @@ export var shift = function(value) {
 };
 lodashEmber.shift = shift;
 
-
 /**
  * Ember `typeOf` alias
  *
@@ -346,7 +323,6 @@ lodashEmber.shift = shift;
  */
 export var typeOf = (value) => Ember.typeOf(value);
 lodashEmber.typeOf = typeOf;
-
 
 /**
  * RSVP resolve helper
@@ -360,7 +336,6 @@ export var promiseResolve = (value) => {
 };
 lodashEmber.promiseResolve = promiseResolve;
 
-
 /**
  * RSVP reject helper
  *
@@ -373,7 +348,6 @@ export var promiseReject = (message) => {
   return Ember.RSVP.reject(console.error(message));
 };
 lodashEmber.promiseReject = promiseReject;
-
 
 /**
  * Generate deep `is` methods and override standard methods to handle both
