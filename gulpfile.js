@@ -56,7 +56,7 @@ gulp.task('browserifyWithEmber', ['buildWithEmber', 'cleanClient'],
 
 // Build client-side tests
 gulp.task('browserifyTests', ['buildTests'],
-          browserifyTask([serverTests + '/tests.js'], 'browserTests.js', clientTests));
+          browserifyTask([serverTests + '/index.js'], 'browserTests.js', clientTests));
 
 // Minify client-side release files
 gulp.task('compress', ['client'], function () {
@@ -133,7 +133,7 @@ mochaSettings = { reporter: 'spec' };
 
 // Run server-side tests
 gulp.task('testServer', ['build', 'buildTests'], function () {
-  return gulp.src([serverTests + alljs, '!' + serverTests + '/**/*ember*.js'], { read: false })
+  return gulp.src([serverTests + alljs, '!' + serverTests + '/**/*ember*.js', '!' + serverTests + 'index.js'], { read: false })
     .pipe(mocha(mochaSettings));
 });
 
