@@ -1,6 +1,6 @@
-## ROADMAP
+## Changelog / Roadmap
 
-- **v0.1.0: MVP**
+- **v0.1.x - MVP: Bower, Node/NPM, Testing**
   - ~~Port over from project specific work~~
   - ~~Figure out (initial) way of using~~
     - ~~setup grunt~~
@@ -18,26 +18,35 @@
   - ~~Add uglify~~
   - ~~Setup README~~
   - ~~Submit bower package~~
-- **v0.2.0: Node/NPM**
-  - Conditionally require lodash as bower dep or npm dep so it's not assumed to be present
-  - Modify for use as node module
-  - Make npm package
-- **v0.3.0: Testing**
-  - Do feature write up of Ember extras
-  - Full write up of API Documentation
-  - Setup testing framework
-  - Write tests for existing source
-- **v0.4.0: First New Features**
-  - Break out "lodash-ember-extras" into multiple sub-modules (still included as one)
-  - Combine `_.ensure` methods to be deep, or not (instead of also having `_.deepEnsure` to handle deep)
-  - Make sure `_.deepDelete` works as is
-  - Refactor `_.deepDelete` as `_.delete` and have it handle 1 level objects
   - ~~Promise "extras"~~
     - ~~`_.promiseResolve`~~
     - ~~`_.promiseReject`~~
+  - ~~Node/NPM~~
+    - ~~Conditionally require lodash as bower dep or npm dep so it's not assumed to be present
+    - ~~Modify for use as node module~~
+    - ~~Make npm package~~
+  - ~~Testing~~
+    - ~~Setup testing framework~~
+    - ~~Write tests for existing source~~
+- **v0.2.x: Documentation, First New Features**
+  - Documentation
+    - Do feature write up of Ember extras ([#9](https://github.com/rjhilgefort/lodash-extras/issues/9))
+    - Full write up of API Documentation
+  - Ember extras
+    - Break out "lodash-ember-extras" into sub-module.
+    - Namespaced instead of override on root (maybe) ([#6](https://github.com/rjhilgefort/lodash-extras/issues/6))
+  - Combine `_.ensure` methods to be deep, or not (instead of also having `_.deepEnsure` to handle deep)
+  - `_.delete`
+    - Refactor `_.deepDelete` as `_.delete`
+    - ~~Make sure `_.delete` works as is~~
+    - Refactor `_.delete` to match return of `delete` ([#17](https://github.com/rjhilgefort/lodash-extras/issues/17))
+    - Make sure `_.delete` handles 1 level objects
   - `_.isAnd`, `_.isOr`
     - Modify `_.is` to `_.isAnd`
     - Implement `_.isOr`
   - Implement Ember ArrayPoxy methods that share name in lodash
     - `_.first`
     - `_.last`
+  - Testing
+    - Browser tests ([#18](https://github.com/rjhilgefort/lodash-extras/issues/18))
+    - Ember tests ([#19](https://github.com/rjhilgefort/lodash-extras/issues/19))
