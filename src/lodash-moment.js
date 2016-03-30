@@ -34,7 +34,7 @@ export var ensureMoment = (value, valueDefault) => {
   value = moment(value);
   if (value.isValid()) return value;
   if (isMoment(valueDefault)) return valueDefault;
-  return moment();
+  return value;
 };
 lodashMoment.ensureMoment = ensureMoment;
 
