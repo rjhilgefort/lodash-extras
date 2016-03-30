@@ -112,9 +112,10 @@ foo = _.ensureArray(foo, ['foo', 'bar']); // -> ['foo', 'bar']
 // Providing a default that doesn't match the ensure[Type] will ignore your default
 foo = _.ensureNumber(foo, 'foo'); // -> 1
 
-// ensureMoment is handled slightly different, it will try to convert anything you pass to moment first before falling back to default
+// ensureMoment is handled slightly different, it will try to convert anything you pass to moment first before falling back to default it ensures a moment object but not one with a valid date
 foo = _.ensureMoment(new Date(2015, 11, 5), moment()); // -> Moment with 11-5-2015 as date
 foo = _.ensureMoment('foo', moment()); // -> Moment with today as date
+foo = _.ensureMoment('foo'); // -> Moment with invalid date 
 ```
 
 #### > `_.typeOf`

@@ -49,9 +49,8 @@ lodashMoment.isMoment = isMoment;
 var ensureMoment = exports.ensureMoment = function ensureMoment(value, valueDefault) {
   if (isMoment(value)) return value;
   value = (0, _moment2.default)(value);
-  if (value.isValid()) return value;
-  if (isMoment(valueDefault)) return valueDefault;
-  return (0, _moment2.default)();
+  if (!value.isValid() && isMoment(valueDefault)) return valueDefault;
+  return value;
 };
 lodashMoment.ensureMoment = ensureMoment;
 

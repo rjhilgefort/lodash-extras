@@ -34,22 +34,26 @@ describe(
       it('Returns moment object when valid', () => {
         const testObject = moment();
         expect(_.moment.ensureMoment(testObject).isSame(testObject)).to.be.true;
+        expect(_.moment.ensureMoment(testObject).isValid()).to.be.true;
       });
 
       it('Converts to moment object when possible', () => {
-        const testObject = '2013-02-08';
+        const testObject = new Date('2013-02-08');
         expect(_.moment.ensureMoment(testObject).isSame(moment(testObject))).to.be.true;
+        expect(_.moment.ensureMoment(testObject).isValid()).to.be.true;
       });
 
       it('Returns default value when conversion isn\'t possible', () => {
-        const testObject = 'Not a time';
+        const testObject = new Date('Not a time');
         const valueDefault = moment();
         expect(_.moment.ensureMoment(testObject, valueDefault).isSame(valueDefault)).to.be.true;
+        expect(_.moment.ensureMoment(testObject, valueDefault).isValid()).to.be.true;
       });
 
-      it('Returns  moment object even when default is not supplied', () => {
-        const testObject = 'Not a time';
+      it('Returns moment object even when default is not supplied', () => {
+        const testObject = new Date('Not a time');
         expect(_.moment.isMoment(_.moment.ensureMoment(testObject))).to.be.true;
+        expect(_.moment.ensureMoment(testObject).isValid()).to.be.false;
       });
     });
 });
