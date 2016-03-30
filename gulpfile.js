@@ -68,7 +68,7 @@ gulp.task('compress', ['client'], function () {
 
 // Server-side processing Tasks
 //-----------------------------------------------
-babelSettings = { presets: ['es2015'] };
+babelSettings = { presets: ['es2015'], "plugins": ["transform-undefined-to-void"] };
 
 // Babelify code without Ember for server-side release
 gulp.task('build', ['cleanBuild'], function () {

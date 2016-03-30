@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.buildIsMethods = exports.overloadMethods = exports.filterIsMethods = exports.validIsMethod = exports.makeDeepEnsureType = exports.makeEnsureType = exports.makeIsType = exports.typeDefaults = undefined;
+exports.buildIsMethods = exports.overloadMethods = exports.filterIsMethods = exports.validIsMethod = exports.makeDeepEnsureType = exports.makeEnsureType = exports.makeIsType = exports.typeDefaults = void 0;
 
 var _lodash = require('lodash');
 

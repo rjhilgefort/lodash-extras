@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.typeOf = exports.is = exports.isPromise = exports.isDate = exports.isBlank = exports.isPresent = undefined;
+exports.typeOf = exports.is = exports.isPromise = exports.isBlank = exports.isPresent = void 0;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
@@ -47,18 +47,6 @@ var isBlank = exports.isBlank = function isBlank(value) {
 lodashExtras.isBlank = isBlank;
 
 /**
- * Helper to check if a variable is a date
- *
- * @method isDate
- * @param {*} value: Value to check
- * @return {Boolean}
- */
-var isDate = exports.isDate = function isDate(value) {
-  return _lodash2.default.typeOf(value) === 'date';
-};
-lodashExtras.isDate = isDate;
-
-/**
  * Helper to check if a variable is a promise
  *
  * @method isPromise
@@ -84,8 +72,8 @@ var is = exports.is = function is(value, conditions) {
   if (_lodash2.default.isPresent(conditions) && !_lodash2.default.isArray(conditions)) conditions = [];
   if (conditions.length <= 1) console.error("Don't call `is` helper with just one condition- use that condition directly");
   return _lodash2.default.every(conditions, function (condition) {
-    var result = undefined,
-        not = undefined;
+    var result = void 0,
+        not = void 0;
 
     // Check for valid condition
     if (!_lodash2.default.isString(condition)) {

@@ -69,7 +69,6 @@ Additional is conditions
 * `_.isPresent`: Not `null` or `undefined`
 * `_.isBlank`: Opposite of `_.isPresent`
 * `_.isPromise` Is the object a then-able
-* `_.isDate` Is value a date object
 * `_.moment.isMoment` Is value a moment object
 
 
@@ -192,12 +191,3 @@ This module is simply for mixins that depend on the presence of the moment globa
 
 * `_.moment.ensureMoment`
 * `_.moment.isMoment`
-* `_.moment.before`
-* `_.moment.after`
-
-``` javascript
-// both `moment.before` and `moment.after` are inclusive compares
-_.moment.after(moment(), moment()); // -> true
-```
-
-See [`moment().isBefore`](http://momentjs.com/docs/#/query/is-before/) and [`moment().isAfter`](http://momentjs.com/docs/#/query/is-after/) for further documentation on `_.moment.after` and `_.moment.before`.

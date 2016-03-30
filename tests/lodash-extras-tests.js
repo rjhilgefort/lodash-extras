@@ -51,28 +51,6 @@ describe(
       it('Identifies non-blank Boolean', () => expect(_.isBlank(testDefaults._boolean)).to.be.false);
     });
 
-    describe('isDate', () => {
-      it('exists', () => expect(_.isPresent(_.isDate)).to.be.true);
-
-      it('Identifies dates', () => {
-        const testObject = new Date();
-        expect(_.isDate(testObject)).to.be.true;
-      });
-
-      it('Identifies non-dates', () => expect(_.isDate(testDefaults._object)).to.be.false);
-    });
-
-    describe('isPromise', () => {
-      it('exists', () => expect(_.isPresent(_.isPromise)).to.be.true);
-
-      it('Identifies promises', () => {
-        const testObject = new Promise((resolve, reject) => resolve());
-        expect(_.isPromise(testObject)).to.be.true;
-      });
-
-      it('Identifies non-promises', () => expect(_.isPromise(testDefaults._object)).to.be.false);
-    });
-
     describe('is', () => {
       beforeEach(function() {
         sinon.spy(console, 'warn')
