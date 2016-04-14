@@ -1,5 +1,6 @@
 # lodash-extras
 
+[![npm version](https://badge.fury.io/js/lodash-extras.svg)](https://badge.fury.io/js/lodash-extras) [![Build Status](https://travis-ci.org/rjhilgefort/lodash-extras.svg?branch=master)](https://travis-ci.org/rjhilgefort/lodash-extras)
 #### An opinionated [lodash](https://lodash.com/) modification with extras.
 
 ## Installation / Usage
@@ -115,7 +116,7 @@ foo = _.ensureNumber(foo, 'foo'); // -> 1
 // ensureMoment is handled slightly different, it will try to convert anything you pass to moment first before falling back to default it ensures a moment object but not one with a valid date
 foo = _.ensureMoment(new Date(2015, 11, 5), moment()); // -> Moment with 11-5-2015 as date
 foo = _.ensureMoment('foo', moment()); // -> Moment with today as date
-foo = _.ensureMoment('foo'); // -> Moment with invalid date 
+foo = _.ensureMoment('foo'); // -> Moment with invalid date
 ```
 
 #### > `_.typeOf`
