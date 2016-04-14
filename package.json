@@ -25,15 +25,15 @@
   "contributors": [
     {
       "name": "Ross Hadden",
-      "github": "https://github.com/rosshadden"
+      "url": "https://github.com/rosshadden"
     },
     {
       "name": "Andrew Orahoske",
-      "github": "https://github.com/AO16"
+      "url": "https://github.com/AO16"
     },
     {
       "name": "Nick Jutte",
-      "github": "https://github.com/njutte"
+      "url": "https://github.com/njutte"
     }
   ],
   "license": "MIT",
