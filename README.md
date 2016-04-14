@@ -1,6 +1,6 @@
 # lodash-extras
 
-[![npm version](https://badge.fury.io/js/lodash-extras.svg)](https://badge.fury.io/js/lodash-extras) [![Build Status](https://travis-ci.org/rjhilgefort/lodash-extras.svg?branch=master)](https://travis-ci.org/rjhilgefort/lodash-extras)
+[![npm version](https://badge.fury.io/js/lodash-extras.svg)](https://badge.fury.io/js/lodash-extras) [![Build Status](https://travis-ci.org/rjhilgefort/lodash-extras.svg?branch=master)](https://travis-ci.org/rjhilgefort/lodash-extras) [![Join the chat at https://gitter.im/rjhilgefort/lodash-extras](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rjhilgefort/lodash-extras)
 #### An opinionated [lodash](https://lodash.com/) modification with extras.
 
 ## Installation / Usage
@@ -47,10 +47,6 @@ Then merge in the all object from lodashExtras into _
 ```Javascript
 _.merge(_, lodashExtras.all);
 ```
-
-## Community
-
-[![Join the chat at https://gitter.im/rjhilgefort/lodash-extras](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rjhilgefort/lodash-extras)
 
 ## Further Reading
 
