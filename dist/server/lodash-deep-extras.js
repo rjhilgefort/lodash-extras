@@ -60,7 +60,7 @@ var deepDelete = exports.deepDelete = function deepDelete(value, propString) {
       i = void 0;
 
   // Delete if present
-  if (_lodash2.default.isPresent(value, propString)) {
+  if (_lodashExtras2.default.isPresent(value, propString)) {
     currentValue = value;
     propString = (0, _lodash2.default)(propString).toString().split('.');
 
