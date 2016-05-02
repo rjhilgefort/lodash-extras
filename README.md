@@ -39,13 +39,15 @@ _.merge(_, lodashExtras.all);
 Install via npm
 
 ```shell
+npm install --save lodash
 npm install --save lodash-extras
 ```
 
-Then merge in the all object from lodashExtras into _
+Then merge in the all object from lodashExtras into `_`.
 
 ```Javascript
-_.merge(_, lodashExtras.all);
+const _ = require('lodash');
+_.merge(_, require('lodash-extras').all);
 ```
 
 ## Further Reading
