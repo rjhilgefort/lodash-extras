@@ -23,7 +23,7 @@ lodashExtras.isPresent = isPresent;
  * @param {*} value: Value to check
  * @return {Boolean}
  */
-export var isBlank = (value) => !_.isPresent(value);
+export var isBlank = (value) => !isPresent(value);
 lodashExtras.isBlank = isBlank;
 
 /**
