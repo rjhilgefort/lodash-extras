@@ -1,6 +1,6 @@
 {
   "name": "lodash-extras",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "An opinionated lodash mod with extras",
   "main": "dist/server/index.js",
   "repository": {
