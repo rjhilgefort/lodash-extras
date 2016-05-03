@@ -42,7 +42,7 @@ export var deepDelete = function(value, propString) {
   let currentValue, i;
 
   // Delete if present
-  if (_.isPresent(value, propString)) {
+  if (lodashExtras.isPresent(value, propString)) {
     currentValue = value;
     propString = _(propString).toString().split('.');
 

@@ -42,7 +42,7 @@ lodashExtras.isPresent = isPresent;
  * @return {Boolean}
  */
 var isBlank = exports.isBlank = function isBlank(value) {
-  return !_lodash2.default.isPresent(value);
+  return !isPresent(value);
 };
 lodashExtras.isBlank = isBlank;
 
