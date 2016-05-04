@@ -218,11 +218,8 @@ describe(
 
     describe('isInteger', () => {
       it('exists', () => expect(_.isPresent(_.isInteger)).to.be.true);
-
       it('Identifies Integer', () => expect(_.isInteger(testDefaults, '_number')).to.be.true);
-
       it('Identifies non-Integer', () => expect(_.isInteger(testDefaults, '_object')).to.be.false);
-
       it('Handles undefined key', () => expect(_.isInteger(testDefaults, 'testKey')).to.be.false);
     });
 
