@@ -66,7 +66,6 @@ The full [API Docs](docs/roadmap.md) are still a work in progress. Look for them
 Additional is conditions
 
 * `_.isPresent`: Not `null` or `undefined`
-* `_.isBlank`: Opposite of `_.isPresent`
 * `_.isPromise` Is the object a then-able
 * `_.moment.isMoment` Is value a moment object
 
