@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.typeOf = exports.is = exports.isPromise = exports.isBlank = exports.isPresent = void 0;
+exports.typeOf = exports.is = exports.isPromise = exports.isPresent = void 0;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
@@ -30,21 +30,9 @@ var lodashExtras = {};
  * @return {Boolean}
  */
 var isPresent = exports.isPresent = function isPresent(value) {
-  return !_lodash2.default.isUndefined(value) && !_lodash2.default.isNull(value);
+  return !_lodash2.default.isNil(value);
 };
 lodashExtras.isPresent = isPresent;
-
-/**
- * Helper to check if a variable is defined and present
- *
- * @method isBlank
- * @param {*} value: Value to check
- * @return {Boolean}
- */
-var isBlank = exports.isBlank = function isBlank(value) {
-  return !isPresent(value);
-};
-lodashExtras.isBlank = isBlank;
 
 /**
  * Helper to check if a variable is a promise
