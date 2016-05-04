@@ -15,7 +15,7 @@ describe(
         _undefined: undefined,
         _string: '',
         _boolean: true,
-        _function: () => { },
+        _function: _.noop,
         _number: 2,
         _array: [],
         _object: {}
@@ -47,7 +47,7 @@ describe(
         expect(_.is(testDefaults._object, conditions)).to.be.true;
       });
       it('Identifies non-match', () => {
-        const conditions = ['isPresent', 'isBlank'];
+        const conditions = ['isPresent', 'isString'];
         expect(_.is(testDefaults._object, conditions)).to.be.false;
       });
       it('Displays an error for single condition but completes', () => {
@@ -63,11 +63,11 @@ describe(
         expect(console.warn.getCall(0).args[0]).to.equal('`condition` was not a string: 2');
       });
       it('Identifies match with ! condition', () => {
-        const conditions = ['isPresent', '!isBlank'];
+        const conditions = ['isPresent', '!isString'];
         expect(_.is(testDefaults._object, conditions)).to.be.true;
       });
       it('Identifies match with "is" omitted', () => {
-        const conditions = ['Present', '!Blank'];
+        const conditions = ['Present', '!String'];
         expect(_.is(testDefaults._object, conditions)).to.be.true;
       });
       it('Identifies and returns false for invalid methods', () => {
