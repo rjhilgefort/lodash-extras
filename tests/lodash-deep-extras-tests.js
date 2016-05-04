@@ -494,16 +494,6 @@ describe(
       it('Handles undefined key', () => expect(_.isWeakSet(testDefaults, 'testKey')).to.be.false);
     });
 
-    describe('isBlank', () => {
-      it('exists', () => expect(_.isPresent(_.isBlank)).to.be.true);
-
-      it('Identifies Blank object', () => expect(_.isBlank(testDefaults, '_null')).to.be.true);
-
-      it('Identifies non-Blank object', () => expect(_.isBlank(testDefaults, '_object')).to.be.false);
-
-      it('Handles undefined key', () => expect(_.isBlank(testDefaults, 'testKey')).to.be.true);
-    });
-
     describe('isPromise', () => {
       it('exists', () => expect(_.isPresent(_.isPromise)).to.be.true);
 

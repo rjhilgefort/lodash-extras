@@ -38,20 +38,6 @@ describe(
       it('Identifies null objects', () => expect(_.isPresent(testDefaults._null)).to.be.false);
     });
 
-    describe('isBlank', () => {
-      it('exists', () => expect(_.isPresent(_.isBlank)).to.be.true);
-
-      it('Identifies blank objects', () => expect(_.isBlank(testDefaults._undefined)).to.be.true);
-
-      it('Identifies non-blank objects', () => expect(_.isBlank(testDefaults._object)).to.be.false);
-
-      it('Identifies non-blank String', () => expect(_.isBlank(testDefaults._string)).to.be.false);
-
-      it('Identifies non-blank Number', () => expect(_.isBlank(testDefaults._number)).to.be.false);
-
-      it('Identifies non-blank Boolean', () => expect(_.isBlank(testDefaults._boolean)).to.be.false);
-    });
-
     describe('is', () => {
       beforeEach(function() {
         sinon.spy(console, 'warn')

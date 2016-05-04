@@ -13,18 +13,8 @@ let lodashExtras = {};
  * @param {*} value: Value to check
  * @return {Boolean}
  */
-export var isPresent = (value) => (!_.isUndefined(value) && !_.isNull(value));
+export var isPresent = (value) => !_.isNil(value);
 lodashExtras.isPresent = isPresent;
-
-/**
- * Helper to check if a variable is defined and present
- *
- * @method isBlank
- * @param {*} value: Value to check
- * @return {Boolean}
- */
-export var isBlank = (value) => !isPresent(value);
-lodashExtras.isBlank = isBlank;
 
 /**
  * Helper to check if a variable is a promise
