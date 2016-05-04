@@ -10,7 +10,7 @@ describe(
     let testDefaults;
 
 
-    beforeEach( () => {
+    beforeEach(() => {
       _.runInContext().merge(_, all);
       testDefaults = {
         _null: null,

@@ -7,7 +7,8 @@ describe(
   'Lodash-extras tests',
   function () {
     let testDefaults;
-    beforeEach( () => {
+
+    beforeEach(() => {
       _.runInContext().merge(_, all);
       testDefaults = {
         _null: null,
@@ -17,7 +18,7 @@ describe(
         _function: () => { },
         _number: 2,
         _array: [],
-        _object: { }
+        _object: {}
       };
     });
 
