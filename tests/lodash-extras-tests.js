@@ -124,4 +124,12 @@ describe(
       it('Handles undefined', () => expect(_.typeOf(testDefaults._undefined)).to.equal(typeof testDefaults._undefined));
       it('Handles null', () => expect(_.typeOf(testDefaults._null)).to.equal(typeof testDefaults._null));
     });
+
+    describe('log', () => {
+      it('exists', () => expect(_.isPresent(_.log)).to.be.true);
+      it('Returns value passed in', () => {
+        let foo = { a: 'a', b: { c: 'c', d: { e: 'e', f: [0, 1, 2, 3] } } };
+        expect(_.log(foo)).to.equal(foo);
+      });
+    });
 });

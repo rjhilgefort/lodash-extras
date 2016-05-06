@@ -100,4 +100,22 @@ _.forEach(
 export var typeOf = (value) => typeof value;
 lodashExtras.typeOf = typeOf;
 
+/**
+ * Fancy alternative to console.log(), most useful in node environments
+ *
+ * @method log
+ * @param {*} value: Value to log out
+ * @param {String} [name]: Title the log output for reference
+ * @return {*} The `value` passed in. Useful for use with `then`
+ */
+export var log = function(value, name) {
+  if (!_.isEmpty(name)) name = `  ${name}  `;
+
+  console.log(`\n${_.pad(name, 40, '=')}\n`);
+  console.dir(value, { depth: null });
+
+  return value;
+};
+lodashExtras.log = log;
+
 export default lodashExtras;
