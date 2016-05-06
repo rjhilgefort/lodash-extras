@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.typeOf = exports.is = exports.isPromise = exports.isPresent = void 0;
+exports.log = exports.typeOf = exports.is = exports.isPromise = exports.isPresent = void 0;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
@@ -119,5 +119,23 @@ var typeOf = exports.typeOf = function typeOf(value) {
   return typeof value === 'undefined' ? 'undefined' : _typeof(value);
 };
 lodashExtras.typeOf = typeOf;
+
+/**
+ * Fancy alternative to console.log(), most useful in node environments
+ *
+ * @method log
+ * @param {*} value: Value to log out
+ * @param {String} [name]: Title the log output for reference
+ * @return {*} The `value` passed in. Useful for use with `then`
+ */
+var log = exports.log = function log(value, name) {
+  if (!_lodash2.default.isEmpty(name)) name = '  ' + name + '  ';
+
+  console.log('\n' + _lodash2.default.pad(name, 40, '=') + '\n');
+  console.dir(value, { depth: null });
+
+  return value;
+};
+lodashExtras.log = log;
 
 exports.default = lodashExtras;
