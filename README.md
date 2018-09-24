@@ -81,7 +81,7 @@ _.is('foo', ['isPresent', 'isPlainObject']); // -> false
 // You may prefix any method with `!` to invert the check
 _.is('foo', ['isPresent', '!isPlainObject']); // -> true
 
-// You may omit the the "is" prefix on any method
+// You may omit the "is" prefix on any method
 _.is([1, 2], ['Array', '!Empty']); // -> true
 ```
 
@@ -182,7 +182,7 @@ _.deepDelete(foo, 'bar'); // -> {}
 
 #### > `lodash-ember`
 
-This module constitutes nearly half of the the "lodash-extras" project and I unfortunately do not have the time to do the feature write up for them yet. I opted to shortcut doing the write up as the use case for them is specific to Ember applications. That being said, there's some great stuff in there and I encourage you to [check out the source](src/lodash-ember.js) (again, it's well documented).
+This module constitutes nearly half of the "lodash-extras" project and I unfortunately do not have the time to do the feature write up for them yet. I opted to shortcut doing the write up as the use case for them is specific to Ember applications. That being said, there's some great stuff in there and I encourage you to [check out the source](src/lodash-ember.js) (again, it's well documented).
 
 #### > `lodash-moment`
 
